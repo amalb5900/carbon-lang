@@ -170,7 +170,7 @@ auto InstallPaths::CheckMarkerFile() -> void {
   }
   if (!*access_result) {
     SetError(llvm::Twine("No install marker at path: ") +
-             (root_ / std::string_view(MarkerPath)).native());
+             (root_ / std::string_view(MarkerPath)).string());
     return;
   }
 

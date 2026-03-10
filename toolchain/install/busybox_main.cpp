@@ -42,7 +42,11 @@ static auto Main(int argc, char** argv) -> ErrorOr<int> {
   std::filesystem::path exe_path = busybox_info.bin_path.string();
   exe_path = SetWorkingDirForBazelRun(exe_path);
 
+  #ifdef _WIN32
+  const auto install_paths = InstallPaths::MakeExeRelative(exe_path.string());
+#else
   const auto install_paths = InstallPaths::MakeExeRelative(exe_path.native());
+#endif
   if (install_paths.error()) {
     return Error(*install_paths.error());
   }
@@ -50,10 +54,15 @@ static auto Main(int argc, char** argv) -> ErrorOr<int> {
   // If `LLVM_SYMBOLIZER_PATH` is unset, sets it. Signals.cpp would do some more
   // path resolution which this overrides in favor of using the busybox itself
   // for symbolization.
+#ifdef _WIN32
+  _putenv_s("LLVM_SYMBOLIZER_PATH",
+      (install_paths.llvm_install_bin() / "llvm-symbolizer").string().c_str());
+#else
   setenv(
       "LLVM_SYMBOLIZER_PATH",
       (install_paths.llvm_install_bin() / "llvm-symbolizer").native().c_str(),
       /*overwrite=*/0);
+#endif
 
   auto fs = llvm::vfs::getRealFileSystem();
 

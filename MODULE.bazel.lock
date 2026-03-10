@@ -301,7 +301,7 @@
   "moduleExtensions": {
     "//bazel/cc_toolchains:clang_configuration.bzl%clang_toolchain_extension": {
       "general": {
-        "bzlTransitiveDigest": "44/bjnoCpU6JrWf798MGhACH/QjSv0OkcCi/jF+EGg0=",
+        "bzlTransitiveDigest": "gYALm+YKsBbgSEvKAZeNtKKsLXQmP1BP6TxAnS1nDUk=",
         "usagesDigest": "lTxkeAFhR0iBEa3dg5hWvtd2HFCr5zCJx/fl27A+IKA=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
@@ -317,7 +317,7 @@
     },
     "//bazel/llvm_project:llvm_project.bzl%llvm_project": {
       "general": {
-        "bzlTransitiveDigest": "xDeO6VeJOhQ/KmsAtVhSrY+/XoomqAxdF2SG/XbIkX4=",
+        "bzlTransitiveDigest": "lNDNJivRmHQs1SVQ6i9l+ZwHmwbyiSqkkLOzTTPoGc4=",
         "usagesDigest": "uwwVdRj/NhFVoOIaadPP393kgC/Uu3/nTX9ln69oWp4=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},

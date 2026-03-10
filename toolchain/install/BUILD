@@ -433,6 +433,10 @@ cc_binary(
         "//common:vlog",
         "@llvm-project//llvm:Support",
     ],
+    linkopts = select({
+        "@platforms//os:windows": ["C:/PROGRA~1/LLVM_BAK/lib/clang/22/lib/windows/clang_rt.builtins-x86_64.lib"],
+        "//conditions:default": [],
+    }),
 )
 
 manifest(

@@ -2,8 +2,8 @@
 // Exceptions. See /LICENSE for license information.
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 
-#ifndef CARBON_TOOLCHAIN\DRIVER\RUNTIMES_CACHE_H_
-#define CARBON_TOOLCHAIN\DRIVER\RUNTIMES_CACHE_H_
+#ifndef CARBON_TOOLCHAIN_DRIVER_RUNTIMES_CACHE_H_
+#define CARBON_TOOLCHAIN_DRIVER_RUNTIMES_CACHE_H_
 
 #include <chrono>
 #include <filesystem>
@@ -412,7 +412,7 @@ class Runtimes::Builder : public Printable<Builder> {
   auto Commit() && -> ErrorOr<std::filesystem::path>;
 
   auto Print(llvm::raw_ostream& out) const -> void {
-    out << "Runtimes::Builder{.path = '" << path() << "'}";
+    out << "Runtimes::Builder{.path = '" << path().string() << "'}";
   }
 
  private:

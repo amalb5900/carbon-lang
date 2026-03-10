@@ -256,6 +256,10 @@ using SimdMaskT = __m128i;
 #endif
 using SimdMaskArrayT = std::array<SimdMaskT, sizeof(SimdMaskT) + 1>;
 }  // namespace
+#ifdef _WIN32
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-const-variable"
+#endif
 // A table of masks to include 0-16 bytes of an SSE register.
 static constexpr SimdMaskArrayT PrefixMasks = []() constexpr {
   SimdMaskArrayT masks = {};
@@ -534,9 +538,7 @@ static auto DispatchNext(Lexer& lexer, llvm::StringRef source_text,
                                   ssize_t position) -> void {                \
     Lexer::LexResult result = lexer.LexMethod(source_text, position);        \
     CARBON_CHECK(result, "Failed to form a token!");                         \
-    [[clang::musttail]]
-#endif
-    return DispatchNext(lexer, source_text, position);   \
+    [[clang::musttail]] return DispatchNext(lexer, source_text, position);   \
   }
 CARBON_DISPATCH_LEX_TOKEN(LexError)
 CARBON_DISPATCH_LEX_TOKEN(LexSymbolToken)
@@ -555,9 +557,7 @@ CARBON_DISPATCH_LEX_TOKEN(LexStringLiteral)
             source_text[position])],                                         \
         position);                                                           \
     CARBON_CHECK(result, "Failed to form a token!");                         \
-    [[clang::musttail]]
-#endif
-    return DispatchNext(lexer, source_text, position);   \
+    [[clang::musttail]] return DispatchNext(lexer, source_text, position);   \
   }
 CARBON_DISPATCH_LEX_SYMBOL_TOKEN(LexOneChar)
 CARBON_DISPATCH_LEX_SYMBOL_TOKEN(LexOpening)
@@ -569,9 +569,7 @@ CARBON_DISPATCH_LEX_SYMBOL_TOKEN(LexClosing)
   static auto Dispatch##LexMethod(Lexer& lexer, llvm::StringRef source_text, \
                                   ssize_t position) -> void {                \
     lexer.LexMethod(source_text, position);                                  \
-    [[clang::musttail]]
-#endif
-    return DispatchNext(lexer, source_text, position);   \
+    [[clang::musttail]] return DispatchNext(lexer, source_text, position);   \
   }
 CARBON_DISPATCH_LEX_NON_TOKEN(LexHorizontalWhitespace)
 CARBON_DISPATCH_LEX_NON_TOKEN(LexVerticalWhitespace)
@@ -1015,6 +1013,10 @@ auto Lexer::LexComment(llvm::StringRef source_text, ssize_t& position) -> void {
   // be the dominant cases.
   //
   // TODO: We should extend this to 32-byte SIMD on platforms with support.
+#ifdef _WIN32
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
   constexpr int MaxIndent = 13;
   const int indent = line_info.indent;
   const ssize_t first_line_start = line_info.start;

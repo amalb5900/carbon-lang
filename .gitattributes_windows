@@ -1,0 +1,5 @@
+# Force LF for all C++ files to prevent Windows CRLF corruption
+*.h text eol=lf
+*.cpp text eol=lf
+*.bzl text eol=lf
+*.yaml text eol=lf

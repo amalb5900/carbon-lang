@@ -5,14 +5,16 @@
 #ifndef CARBON_COMMON_FILESYSTEM_H_
 #define CARBON_COMMON_FILESYSTEM_H_
 
-#ifndef _WIN32
+#ifdef _WIN32
+#include "common/filesystem_win32.h"
+#else
 #include <dirent.h>
-#endif
 #include <fcntl.h>
 #include <sys/file.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
+#endif
 
 #include <chrono>
 #include <concepts>
@@ -272,6 +274,8 @@ class FileStatus {
     // spelling.
 #if __APPLE__
     timespec ts = stat_buf_.st_mtimespec;
+#elif defined(_WIN32)
+    timespec ts = {stat_buf_.st_mtime, 0};
 #else
     timespec ts = stat_buf_.st_mtim;
 #endif

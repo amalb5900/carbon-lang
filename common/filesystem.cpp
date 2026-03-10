@@ -52,6 +52,14 @@ static auto PrintErrorNumber(llvm::raw_ostream& out, int errnum) -> void {
         "an error message",
         errnum, meta_error);
   }
+#elif defined(_WIN32)
+  char buffer[256];
+  strerror_s(buffer, sizeof(buffer), errnum);
+  out << llvm::formatv("errno {0}: {1}", errnum, llvm::StringRef(buffer));
+#elif defined(_WIN32)
+  char buffer[256];
+  strerror_s(buffer, sizeof(buffer), errnum);
+  out << llvm::formatv("errno {0}: {1}", errnum, llvm::StringRef(buffer));
 #else
 #error TODO: Implement this for other platforms.
 #endif
@@ -69,7 +77,7 @@ auto PathError::Print(llvm::raw_ostream& out) const -> void {
   // The `format_` member is a `StringLiteral` that is null terminated, so
   // `.data()` is safe here.
   // NOLINTNEXTLINE(bugprone-suspicious-stringview-data-usage)
-  out << llvm::formatv(format_.data(), path_,
+  out << llvm::formatv(format_.data(), path_.string(),
                        dir_fd_ == AT_FDCWD ? std::string("AT_FDCWD")
                                            : std::to_string(dir_fd_))
       << " failed: ";
@@ -209,6 +217,9 @@ static auto Sleep(Duration sleep) -> void {
 auto Internal::FileRefBase::TryLock(FileLock::Kind kind, Duration deadline,
                                     Duration poll_interval)
     -> ErrorOr<FileLock, FdError> {
+#ifdef _WIN32
+  (void)kind;
+#endif
   CARBON_CHECK(poll_interval <= deadline);
   if (deadline != Duration(0) && poll_interval == Duration(0)) {
     // If the caller didn't provide a poll interval but did provide a deadline,
@@ -713,12 +724,24 @@ auto MakeTmpDirWithPrefix(std::filesystem::path prefix)
   std::filesystem::path tmpdir_path = std::move(prefix);
   tmpdir_path += ".XXXXXX";
 
+#ifdef _WIN32
+  std::string tmpdir_path_buffer = tmpdir_path.string();
+#else
+#ifdef _WIN32
+  std::string tmpdir_path_buffer = tmpdir_path.string();
+#else
+  #ifdef _WIN32
+  std::string tmpdir_path_buffer = tmpdir_path.string();
+#else
   std::string tmpdir_path_buffer = tmpdir_path.native();
+#endif
+#endif
+#endif
   char* result = mkdtemp(tmpdir_path_buffer.data());
   if (result == nullptr) {
     RawStringOstream os;
     os << llvm::formatv("Calling mkdtemp on '{0}' failed: ",
-                        tmpdir_path.native());
+                        tmpdir_path.string());
     PrintErrorNumber(os, errno);
     return Error(os.TakeStr());
   }
@@ -743,7 +766,7 @@ auto MakeTmpDirWithPrefix(std::filesystem::path prefix)
   if (stat.permissions() != 0700 && stat.unix_uid() != geteuid()) {
     return Error(
         llvm::formatv("Found incorrect permissions or UID on tmpdir '{0}'",
-                      tmpdir_path.native())
+                      tmpdir_path.string())
             .str());
   }
 

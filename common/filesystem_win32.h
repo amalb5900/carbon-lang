@@ -10,12 +10,103 @@
 #define NOMINMAX
 #define WIN32_LEAN_AND_MEAN
 #include <direct.h>
+#include <fcntl.h>
 #include <io.h>
 #include <process.h>
+#include <stdio.h>
+#include <time.h>
+#include <windows.h>
+#include <string>
+#include <type_traits>
+#include <vector>
+
+// POSIX access() flags
+#ifndef F_OK
+#define F_OK 0
+#define R_OK 4
+#define W_OK 2
+#define X_OK 1
+#endif
+
+// AT_ defines
+#ifndef AT_SYMLINK_NOFOLLOW
+#define AT_SYMLINK_NOFOLLOW 0x0200
+#define AT_FDCWD -100
+#define AT_REMOVEDIR 0x0200
+#endif
+
+// chdir
+#ifdef chdir
+#undef chdir
+#endif
+static inline int chdir(const char* path) { return ::_chdir(path); }
+static inline int chdir(const wchar_t* path) { return ::_wchdir(path); }
+
+// unlinkat stub
+#ifdef unlink
+#undef unlink
+#endif
+#ifdef _rmdir
+#undef _rmdir
+#endif
+static inline int _carbon_rmdir(const char* p) { return ::_rmdir(p); }
+static inline int _carbon_wrmdir(const wchar_t* p) { return ::_wrmdir(p); }
+static inline int _carbon_unlink(const char* p) { return ::_unlink(p); }
+static inline int _carbon_wunlink(const wchar_t* p) { return ::_wunlink(p); }
+#ifdef unlinkat
+#undef unlinkat
+#endif
+static inline int unlinkat(int, const char* path, int flags) {
+  if (flags & 0x0200) { return _carbon_rmdir(path); }
+  return _carbon_unlink(path);
+}
+static inline int unlinkat(int, const wchar_t* path, int flags) {
+  if (flags & 0x0200) { return _carbon_wrmdir(path); }
+  return _carbon_wunlink(path);
+}
+
+// fchdir stub
+#ifdef fchdir
+#undef fchdir
+#endif
+static inline int fchdir(int fd) { (void)fd; return -1; }
+
+// flock defines
+#ifndef LOCK_SH
+#define LOCK_SH 1
+#define LOCK_EX 2
+#define LOCK_NB 4
+#define LOCK_UN 8
+#endif
+
+// mode_t and file type defines
+#ifndef _MODE_T_DEFINED
+typedef int mode_t;
+#define _MODE_T_DEFINED
+#endif
+typedef mode_t ModeType;
+#ifndef S_IFLNK
+#define S_IFLNK  0120000
+#define S_IFIFO  0010000
+#define S_IFBLK  0060000
+#define S_IFSOCK 0140000
+#define S_ISLNK(m)  (((m) & S_IFMT) == S_IFLNK)
+#define S_ISFIFO(m) (((m) & S_IFMT) == S_IFIFO)
+#define S_ISBLK(m)  (((m) & S_IFMT) == S_IFBLK)
+#define S_ISSOCK(m) (((m) & S_IFMT) == S_IFSOCK)
+#endif
+#define WIN32_LEAN_AND_MEAN
+#include <direct.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <io.h>
+#include <process.h>
+#include <time.h>
 #include <windows.h>
 #include <winioctl.h>
 
 #include <string>
+#include <type_traits>
 #include <vector>
 
 #ifndef AT_FDCWD
@@ -420,8 +511,9 @@ static inline int ftruncate(int fd, int64_t length) {
 // close - safe wrapper that handles directory HANDLE-based fds on Windows
 #define unlink _unlink
 
+static inline int _carbon_safe_close(int fd) {
 if (_carbon_is_dir_fd(fd)) {
-  HANDLE h = _carbon_dir_get(fd);
+  (void)_carbon_dir_get(fd);
   _carbon_dir_remove(fd);
   return 0;
 }
@@ -488,6 +580,7 @@ struct _CarbonDIR {
 };
 #define DIR _CarbonDIR
 
+static inline DIR* opendir(const char* name) {
 int wlen = MultiByteToWideChar(CP_UTF8, 0, name, -1, nullptr, 0);
 wchar_t* wname = new wchar_t[wlen + 4];
 MultiByteToWideChar(CP_UTF8, 0, name, -1, wname, wlen);
@@ -505,6 +598,7 @@ d->first = true;
 return d;
 }
 
+static inline DIR* fdopendir(int fd) {
 HANDLE h =
     _carbon_is_dir_fd(fd) ? _carbon_dir_get(fd) : (HANDLE)_get_osfhandle(fd);
 if (h == INVALID_HANDLE_VALUE) {
@@ -573,4 +667,20 @@ inline static int dirfd(_CarbonDIR* d) {
 }
 #endif  // _CARBON_DIR_IMPL
 
-#endif  // CARBON_COMMON\FILESYSTEM_WIN32_H_
+// utimensat stub
+#ifdef utimensat
+#undef utimensat
+#endif
+static inline int utimensat(int, const char*, const struct timespec*, int) { return 0; }
+static inline int utimensat(int, const wchar_t*, const struct timespec*, int) { return 0; }
+
+// renameat stub
+#ifdef renameat
+#undef renameat
+#endif
+static inline int renameat(int, const char* oldp, int, const char* newp) { return ::rename(oldp, newp); }
+static inline int renameat(int, const wchar_t* oldp, int, const wchar_t* newp) { return _wrename(oldp, newp); }
+
+#endif  // _WIN32
+
+#endif  // CARBON_COMMON_FILESYSTEM_WIN32_H_

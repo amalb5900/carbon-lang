@@ -97,10 +97,10 @@ auto DigestProgram::Run(int argc, char** argv) -> ErrorOr<int> {
       }
     }
 
-    CARBON_VLOG("Digesting file: {0}\n", install_path);
+    CARBON_VLOG("Digesting file: {0}\n", install_path.string());
     // Add the install path itself to the digest to track the layout of the
     // installation data.
-    sha256.update(install_path.native());
+    sha256.update(install_path.string());
 
     // Open the file and compute its digest to add as well. We use a memoizing
     // helper here to avoid re-examining the same file even if there are

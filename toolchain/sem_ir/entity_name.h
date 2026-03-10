@@ -55,9 +55,15 @@ struct EntityName : public Printable<EntityName> {
   // The bind_index() value, unwrapped so it can be stored in a bit-field.
   int32_t bind_index_value : 30 = CompileTimeBindIndex::None.index;
   // Whether this binding is a template parameter.
+#ifdef _WIN32
+  unsigned is_template : 1 = false;
+  // Whether this binding is marked unused.
+  unsigned is_unused : 1 = false;
+#else
   bool is_template : 1 = false;
   // Whether this binding is marked unused.
   bool is_unused : 1 = false;
+#endif
 
   // The declared form of the binding. This is guaranteed to be set for
   // `:?` bindings, and may be set for other binding kinds as well.

@@ -15,7 +15,7 @@ namespace Carbon {
 // The mode is set to the initial filename used for `argv[0]`.
 static auto GetMode(const std::filesystem::path& argv0)
     -> std::optional<std::string> {
-  std::string filename = argv0.filename();
+  std::string filename = argv0.filename().string();
   if (filename != "carbon" && filename != "carbon-busybox") {
     return filename;
   }
@@ -46,10 +46,22 @@ auto GetBusyboxInfo(const char* argv0) -> ErrorOr<BusyboxInfo> {
   // Check for an override of `argv[0]` from the environment and apply it.
   if (const char* argv0_override = getenv(Argv0OverrideEnv)) {
     argv0_path = argv0_override;
+#ifdef _WIN32
+    _putenv_s(Argv0OverrideEnv, "");
+#else
+#ifdef _WIN32
+    _putenv_s(Argv0OverrideEnv, "");
+#else
     unsetenv(Argv0OverrideEnv);
+#endif
+#endif
   }
 
+  #ifdef _WIN32
+  BusyboxInfo info = {.bin_path = FindExecutablePath(argv0_path.string().c_str()),
+#else
   BusyboxInfo info = {.bin_path = FindExecutablePath(argv0_path.c_str()),
+#endif
                       .mode = GetMode(argv0_path)};
 
   // Now search through any symlinks to locate the installed busybox binary.
