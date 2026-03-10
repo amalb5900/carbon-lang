@@ -2,8 +2,8 @@
 // Exceptions. See /LICENSE for license information.
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 
-#ifndef CARBON_TOOLCHAIN_DRIVER_RUNTIMES_CACHE_H_
-#define CARBON_TOOLCHAIN_DRIVER_RUNTIMES_CACHE_H_
+#ifndef CARBON_TOOLCHAIN\DRIVER\RUNTIMES_CACHE_H_
+#define CARBON_TOOLCHAIN\DRIVER\RUNTIMES_CACHE_H_
 
 #include <chrono>
 #include <filesystem>
@@ -246,14 +246,19 @@ class Runtimes::Cache {
       : vlog_stream_(arg.vlog_stream_),
         cache_key_(std::move(arg.cache_key_)),
         path_(std::move(arg.path_)),
-        dir_owner_(std::exchange(arg.dir_owner_, {})),
-        dir_(arg.dir_) {}
+        dir_owner_(std::exchange(arg.dir_owner_, {})) {
+    if (auto* d = std::get_if<Filesystem::Dir>(&dir_owner_)) {
+      dir_ = *d;
+    }
+  }
   auto operator=(Cache&& arg) noexcept -> Cache& {
     vlog_stream_ = arg.vlog_stream_;
     cache_key_ = std::move(arg.cache_key_);
     path_ = std::move(arg.path_);
     dir_owner_ = std::exchange(arg.dir_owner_, {});
-    dir_ = arg.dir_;
+    if (auto* d = std::get_if<Filesystem::Dir>(&dir_owner_)) {
+      dir_ = *d;
+    }
     return *this;
   }
 
@@ -438,4 +443,4 @@ class Runtimes::Builder : public Printable<Builder> {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_DRIVER_RUNTIMES_CACHE_H_
+#endif  // CARBON_TOOLCHAIN\DRIVER\RUNTIMES_CACHE_H_
