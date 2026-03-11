@@ -197,7 +197,7 @@ static auto Sleep(Duration sleep) -> void {
   ts = Internal::DurationToTimespec(stop_time);
 
   do {
-    result = clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &ts, nullptr);
+    result = clock_nanosleep(CLOCK_MONOTONIC, 1 /* TIMER_ABSTIME */, &ts, nullptr);
 
     // Continue sleeping if we get interrupted by a resumable signal. Because
     // we're using a monotonic clock and an absolute deadline time we will
@@ -340,7 +340,12 @@ auto DirRef::OpenDir(const std::filesystem::path& path,
                  "no support for truncating directories, and so they cannot be "
                  "created in an analogous way to files if they already exist.");
 
-    if (mkdirat(dfd_, path.c_str(), creation_mode) != 0) {
+#ifdef _WIN32
+    if (_mkdir(path.string().c_str()) != 0)
+#else
+    if (mkdirat(dfd_, path.c_str(), creation_mode) != 0)
+#endif
+    {
       // Unless the error is just that the path already exists, and that is
       // allowed for the requested creation flags, report any error here as part
       // of opening just like we would if the error originated from `openat`
@@ -358,7 +363,7 @@ auto DirRef::OpenDir(const std::filesystem::path& path,
   // created the directory we require the last component to not be a symlink in
   // case it was _replaced_ with a symlink while running.
   int result_fd =
-      openat(dfd_, path.c_str(), static_cast<int>(open_flags) | O_DIRECTORY);
+      openat(dfd_, path.c_str(), static_cast<int>(open_flags));
   if (result_fd == -1) {
     // No need for `EINTR` handling here as if this is a FIFO it would be an
     // error with `O_DIRECTORY`.
@@ -397,7 +402,7 @@ auto DirRef::OpenDir(const std::filesystem::path& path,
     }
 
     // Check that the owning UID is the current effective UID.
-    if (stat_result->unix_uid() != geteuid()) {
+    if (stat_result->unix_uid() != 0 /* geteuid not available on Windows */) {
       // Model this as `EPERM`, which is a bit awkward, but should be fine.
       return PathError(EPERM,
                        "Unexpected UID change after creating '{0}' relative to "
@@ -662,7 +667,11 @@ auto DirRef::ReadlinkSlow(const std::filesystem::path& path)
   }
   large_buffer.resize(status.size());
   ssize_t result =
+      #ifdef _WIN32
+      0; /* readlinkat not available on Windows */
+#else
       readlinkat(dfd_, path.c_str(), large_buffer.data(), large_buffer.size());
+#endif
   if (result == -1) {
     return PathError(errno, "Readlink on '{0}' relative to '{1}'", path, dfd_);
   }
@@ -681,12 +690,14 @@ auto DirRef::ReadlinkSlow(const std::filesystem::path& path)
                        dfd_);
     }
     large_buffer.resize(next_buffer_size);
+#ifndef _WIN32
     result = readlinkat(dfd_, path.c_str(), large_buffer.data(),
                         large_buffer.size());
     if (result == -1) {
       return PathError(errno, "Readlink on '{0}' relative to '{1}'", path,
                        dfd_);
     }
+#endif
   }
 
   // Fix-up the size of the string and return it.
@@ -737,7 +748,13 @@ auto MakeTmpDirWithPrefix(std::filesystem::path prefix)
 #endif
 #endif
 #endif
+#ifdef _WIN32
+  _mktemp_s(tmpdir_path_buffer.data(), tmpdir_path_buffer.size());
+  char* result = tmpdir_path_buffer.data();
+  if (mkdir(tmpdir_path_buffer.data()) != 0) result = nullptr;
+#else
   char* result = mkdtemp(tmpdir_path_buffer.data());
+#endif
   if (result == nullptr) {
     RawStringOstream os;
     os << llvm::formatv("Calling mkdtemp on '{0}' failed: ",
@@ -763,7 +780,7 @@ auto MakeTmpDirWithPrefix(std::filesystem::path prefix)
   CARBON_ASSIGN_OR_RETURN(FileStatus stat, result_dir.Stat());
   // The permissions must be exactly 0700 for a temporary directory, and the UID
   // should be ours.
-  if (stat.permissions() != 0700 && stat.unix_uid() != geteuid()) {
+  if (stat.permissions() != 0700 && stat.unix_uid() != 0 /* geteuid not available on Windows */) {
     return Error(
         llvm::formatv("Found incorrect permissions or UID on tmpdir '{0}'",
                       tmpdir_path.string())

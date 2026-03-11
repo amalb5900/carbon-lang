@@ -277,7 +277,11 @@ class FileStatus {
 #elif defined(_WIN32)
     timespec ts = {stat_buf_.st_mtime, 0};
 #else
+#ifdef _WIN32
+    timespec ts = {stat_buf_.st_mtime, 0};
+#else
     timespec ts = stat_buf_.st_mtim;
+#endif
 #endif
     TimePoint t(std::chrono::seconds(ts.tv_sec));
     return t + std::chrono::nanoseconds(ts.tv_nsec);
@@ -1618,7 +1622,11 @@ inline auto DirRef::Readlink(const std::filesystem::path& path)
   // contents.
   constexpr ssize_t BufferSize = 256;
   char buffer[BufferSize];
+#ifdef _WIN32
+  ssize_t read_bytes = -1; /* readlinkat not available on Windows */
+#else
   ssize_t read_bytes = readlinkat(dfd_, path.c_str(), buffer, BufferSize);
+#endif
   if (read_bytes == -1) {
     return PathError(errno, "Dir::Readlink on '{0}' relative to '{1}'", path,
                      dfd_);
@@ -1694,13 +1702,17 @@ inline auto DirRef::Chdir(const std::filesystem::path& path)
 }
 
 inline auto DirRef::Symlink(const std::filesystem::path& path,
-                            const std::string& target)
+                            [[maybe_unused]] const std::string& target)
     -> ErrorOr<Success, PathError> {
+#ifdef _WIN32
+  return PathError(ENOSYS, "Dir::Symlink not supported on Windows", path, dfd_);
+#else
   if (symlinkat(target.c_str(), dfd_, path.c_str()) == -1) {
     return PathError(errno, "Dir::Symlink on '{0}' relative to '{1}'", path,
                      dfd_);
   }
   return Success();
+#endif
 }
 
 inline auto DirRef::Unlink(const std::filesystem::path& path)
