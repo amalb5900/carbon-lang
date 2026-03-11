@@ -20,4 +20,4 @@ auto FindExecutablePath(const char* argv0) -> std::string;
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON_EXE_PATH_H_
+#endif  // CARBON_COMMON\EXE_PATH_H_

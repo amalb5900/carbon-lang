@@ -7,4 +7,4 @@
 
 auto HelloWorld() -> void;
 
-#endif  // CARBON_EXAMPLES_BAZEL_EXAMPLE_LIB_H_
+#endif  // CARBON_EXAMPLES\BAZEL\EXAMPLE_LIB_H_

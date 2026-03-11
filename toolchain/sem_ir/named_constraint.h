@@ -64,4 +64,4 @@ using NamedConstraintStore =
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_NAMED_CONSTRAINT_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\NAMED_CONSTRAINT_H_

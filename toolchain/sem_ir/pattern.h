@@ -32,4 +32,4 @@ auto GetPrettyNameFromPatternId(const File& sem_ir, InstId pattern_id)
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_PATTERN_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\PATTERN_H_

@@ -30,4 +30,4 @@ auto InventClangArgs(Context& context, llvm::ArrayRef<SemIR::InstId> arg_ids)
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_CPP_TYPE_MAPPING_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\CPP\TYPE_MAPPING_H_

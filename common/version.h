@@ -24,4 +24,4 @@ struct Version {
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON_VERSION_H_
+#endif  // CARBON_COMMON\VERSION_H_

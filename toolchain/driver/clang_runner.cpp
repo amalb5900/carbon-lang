@@ -296,7 +296,8 @@ auto ClangRunner::RunInternal(
     // to use command line flags to force static runtime linking to occur.
     if (libunwind_path) {
       prefix_args.push_back(
-          llvm::formatv("-L{0}/lib", std::move(*libunwind_path).string()).str());
+          llvm::formatv("-L{0}/lib", std::move(*libunwind_path).string())
+              .str());
     }
     if (libcxx_path) {
       prefix_args.push_back(

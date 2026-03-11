@@ -149,4 +149,4 @@ class MemUsage {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_BASE_MEM_USAGE_H_
+#endif  // CARBON_TOOLCHAIN\BASE\MEM_USAGE_H_

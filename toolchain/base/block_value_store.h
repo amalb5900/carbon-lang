@@ -158,4 +158,4 @@ class BlockValueStore<IdT, ElementT, TagIdT>::KeyContext
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_BASE_BLOCK_VALUE_STORE_H_
+#endif  // CARBON_TOOLCHAIN\BASE\BLOCK_VALUE_STORE_H_

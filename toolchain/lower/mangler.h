@@ -87,4 +87,4 @@ class Mangler {
 
 }  // namespace Carbon::Lower
 
-#endif  // CARBON_TOOLCHAIN_LOWER_MANGLER_H_
+#endif  // CARBON_TOOLCHAIN\LOWER\MANGLER_H_

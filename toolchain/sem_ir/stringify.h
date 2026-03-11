@@ -42,4 +42,4 @@ auto StringifyFacetType(const File& sem_ir, FacetTypeId facet_type_id)
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_STRINGIFY_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\STRINGIFY_H_

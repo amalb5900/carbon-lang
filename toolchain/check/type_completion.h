@@ -105,4 +105,4 @@ auto DiagnoseAbstractClass(Context& context, SemIR::ClassId class_id,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_TYPE_COMPLETION_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\TYPE_COMPLETION_H_

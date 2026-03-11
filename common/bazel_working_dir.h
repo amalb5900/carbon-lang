@@ -48,4 +48,4 @@ inline auto SetWorkingDirForBazelRun(std::filesystem::path exe_path = {})
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON_BAZEL_WORKING_DIR_H_
+#endif  // CARBON_COMMON\BAZEL_WORKING_DIR_H_

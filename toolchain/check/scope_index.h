@@ -28,4 +28,4 @@ inline constexpr ScopeIndex ScopeIndex::Package = ScopeIndex(0);
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_SCOPE_INDEX_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\SCOPE_INDEX_H_

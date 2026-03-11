@@ -223,4 +223,4 @@ inline constexpr ImplStore::ImplOrLookupBucketId
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_IMPL_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\IMPL_H_

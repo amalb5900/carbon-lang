@@ -40,4 +40,4 @@ static_assert(sizeof(Kind) == 2, "Kind includes padding!");
 
 }  // namespace Carbon::Diagnostics
 
-#endif  // CARBON_TOOLCHAIN_DIAGNOSTICS_KIND_H_
+#endif  // CARBON_TOOLCHAIN\DIAGNOSTICS\KIND_H_

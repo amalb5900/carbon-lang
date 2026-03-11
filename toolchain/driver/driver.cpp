@@ -284,4 +284,3 @@ auto Driver::RunCommand(llvm::ArrayRef<llvm::StringRef> args) -> DriverResult {
 }
 
 }  // namespace Carbon
-

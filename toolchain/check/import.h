@@ -119,4 +119,4 @@ auto MakeImportedLocIdAndInst(Context& context,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_IMPORT_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\IMPORT_H_

@@ -89,4 +89,4 @@ class SharedValueStores : public Yaml::Printable<SharedValueStores> {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_BASE_SHARED_VALUE_STORES_H_
+#endif  // CARBON_TOOLCHAIN\BASE\SHARED_VALUE_STORES_H_

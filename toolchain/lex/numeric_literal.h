@@ -73,4 +73,4 @@ class NumericLiteral {
 
 }  // namespace Carbon::Lex
 
-#endif  // CARBON_TOOLCHAIN_LEX_NUMERIC_LITERAL_H_
+#endif  // CARBON_TOOLCHAIN\LEX\NUMERIC_LITERAL_H_

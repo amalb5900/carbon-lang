@@ -197,4 +197,4 @@ auto BuildTypeStructure(Context& context, SemIR::InstId self_inst_id,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_TYPE_STRUCTURE_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\TYPE_STRUCTURE_H_

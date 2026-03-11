@@ -215,4 +215,4 @@ auto SetNamespaceNodeId(Context& context, SemIR::InstId inst_id,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_INST_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\INST_H_

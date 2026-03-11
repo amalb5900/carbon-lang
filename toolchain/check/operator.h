@@ -49,4 +49,4 @@ auto BuildBinaryOperator(
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_OPERATOR_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\OPERATOR_H_

@@ -414,4 +414,4 @@ class ValueStore
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_BASE_VALUE_STORE_H_
+#endif  // CARBON_TOOLCHAIN\BASE\VALUE_STORE_H_

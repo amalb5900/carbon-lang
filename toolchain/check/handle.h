@@ -33,4 +33,4 @@ auto HandleFunctionDefinitionResume(
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_HANDLE_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\HANDLE_H_

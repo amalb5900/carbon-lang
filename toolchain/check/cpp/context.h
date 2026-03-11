@@ -57,4 +57,4 @@ class CppContext {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_CPP_CONTEXT_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\CPP\CONTEXT_H_

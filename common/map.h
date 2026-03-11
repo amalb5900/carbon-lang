@@ -589,4 +589,4 @@ auto Map<InputKeyT, InputValueT, SmallSize, InputKeyContextT>::Reset() -> void {
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON_MAP_H_
+#endif  // CARBON_COMMON\MAP_H_

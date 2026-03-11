@@ -167,4 +167,4 @@ struct IdTag {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_BASE_ID_TAG_H_
+#endif  // CARBON_TOOLCHAIN\BASE\ID_TAG_H_

@@ -199,4 +199,4 @@ class CheckUnit {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_CHECK_UNIT_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\CHECK_UNIT_H_

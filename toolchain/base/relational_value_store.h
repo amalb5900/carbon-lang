@@ -82,4 +82,4 @@ class RelationalValueStore {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_BASE_RELATIONAL_VALUE_STORE_H_
+#endif  // CARBON_TOOLCHAIN\BASE\RELATIONAL_VALUE_STORE_H_

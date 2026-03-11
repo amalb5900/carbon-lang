@@ -160,4 +160,4 @@ extern auto GetFileTestFactory() -> FileTestFactory;
 
 }  // namespace Carbon::Testing
 
-#endif  // CARBON_TESTING_FILE_TEST_FILE_TEST_BASE_H_
+#endif  // CARBON_TESTING\FILE_TEST\FILE_TEST_BASE_H_

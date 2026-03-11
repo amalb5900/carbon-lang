@@ -68,4 +68,4 @@ auto GetAbsoluteNodeId(const File* sem_ir, LocId loc_id)
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_ABSOLUTE_NODE_ID_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\ABSOLUTE_NODE_ID_H_

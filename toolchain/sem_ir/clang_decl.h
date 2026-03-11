@@ -124,4 +124,4 @@ using ClangDeclStore =
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_CLANG_DECL_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\CLANG_DECL_H_

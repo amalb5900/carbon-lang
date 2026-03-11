@@ -75,4 +75,4 @@ constexpr auto MakeSingletonTypeInstId() -> TypeInstId {
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_SINGLETON_INSTS_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\SINGLETON_INSTS_H_

@@ -40,4 +40,4 @@ inline auto NullEmitter() -> Emitter<LocT>& {
 
 }  // namespace Carbon::Diagnostics
 
-#endif  // CARBON_TOOLCHAIN_DIAGNOSTICS_NULL_DIAGNOSTICS_H_
+#endif  // CARBON_TOOLCHAIN\DIAGNOSTICS\NULL_DIAGNOSTICS_H_

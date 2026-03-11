@@ -534,7 +534,8 @@ auto ClangResourceDirBuilder::BuildCrtFile(llvm::StringRef src_file)
                                                : "clang_rt.crtend.o");
   std::filesystem::path src_path =
       installation().runtimes_root() / std::string_view(src_file);
-  CARBON_VLOG("Building {0}' from {1}...\n", out_path.string(), src_path.string());
+  CARBON_VLOG("Building {0}' from {1}...\n", out_path.string(),
+              src_path.string());
 
   llvm::SmallVector<llvm::StringRef> copts = {
       "-no-canonical-prefixes",

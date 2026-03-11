@@ -44,4 +44,4 @@ class LinkSubcommand : public DriverSubcommand {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_DRIVER_LINK_SUBCOMMAND_H_
+#endif  // CARBON_TOOLCHAIN\DRIVER\LINK_SUBCOMMAND_H_

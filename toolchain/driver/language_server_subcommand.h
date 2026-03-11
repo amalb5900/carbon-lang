@@ -26,4 +26,4 @@ class LanguageServerSubcommand : public DriverSubcommand {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_DRIVER_LANGUAGE_SERVER_SUBCOMMAND_H_
+#endif  // CARBON_TOOLCHAIN\DRIVER\LANGUAGE_SERVER_SUBCOMMAND_H_

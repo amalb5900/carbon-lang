@@ -16,4 +16,4 @@ auto GetCppLocation(Context& context, SemIR::LocId loc_id)
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_CPP_LOCATION_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\CPP\LOCATION_H_

@@ -342,4 +342,4 @@ class ConstantStore {
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_CONSTANT_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\CONSTANT_H_

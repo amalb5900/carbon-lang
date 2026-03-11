@@ -17,4 +17,4 @@ auto Format(const Lex::TokenizedBuffer& tokens, llvm::raw_ostream& out) -> bool;
 
 }  // namespace Carbon::Format
 
-#endif  // CARBON_TOOLCHAIN_FORMAT_FORMAT_H_
+#endif  // CARBON_TOOLCHAIN\FORMAT\FORMAT_H_

@@ -23,4 +23,4 @@ extern "C" int LLVMFuzzerInitialize(int* argc, char*** argv);
 
 }  // namespace Carbon::Testing
 
-#endif  // CARBON_TESTING_FUZZING_LIBFUZZER_H_
+#endif  // CARBON_TESTING\FUZZING\LIBFUZZER_H_

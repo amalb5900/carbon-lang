@@ -38,4 +38,4 @@ auto BuildReturnVar(Context& context, Parse::ReturnStatementId node_id) -> void;
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_RETURN_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\RETURN_H_

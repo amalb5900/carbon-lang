@@ -67,4 +67,4 @@ using InterfaceStore = ValueStore<InterfaceId, Interface, Tag<CheckIRId>>;
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_INTERFACE_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\INTERFACE_H_

@@ -71,4 +71,4 @@ class CoreIdentifierCache {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_CORE_IDENTIFIER_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\CORE_IDENTIFIER_H_

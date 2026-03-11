@@ -1734,4 +1734,4 @@ auto TableImpl<InputBaseT, SmallSize>::SetUpStorage() -> void {
 
 }  // namespace Carbon::RawHashtable
 
-#endif  // CARBON_COMMON_RAW_HASHTABLE_H_
+#endif  // CARBON_COMMON\RAW_HASHTABLE_H_

@@ -53,7 +53,6 @@ struct CharLiteralValue {
 #pragma pack(push, 1)
 #endif
 class TokenInfo {
-
  public:
   // The kind for this token.
   auto kind() const -> TokenKind { return kind_; }
@@ -204,4 +203,4 @@ static_assert(sizeof(TokenInfo) == 8,
 
 }  // namespace Carbon::Lex
 
-#endif  // CARBON_TOOLCHAIN_LEX_TOKEN_INFO_H_
+#endif  // CARBON_TOOLCHAIN\LEX\TOKEN_INFO_H_

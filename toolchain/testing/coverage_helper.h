@@ -82,4 +82,4 @@ auto TestKindCoverage(const std::string& manifest_path,
 
 }  // namespace Carbon::Testing
 
-#endif  // CARBON_TOOLCHAIN_TESTING_COVERAGE_HELPER_H_
+#endif  // CARBON_TOOLCHAIN\TESTING\COVERAGE_HELPER_H_

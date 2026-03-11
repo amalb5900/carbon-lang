@@ -1165,4 +1165,4 @@ inline auto MetadataGroup::X86SimdMatch(uint8_t match_byte) const
 
 }  // namespace Carbon::RawHashtable
 
-#endif  // CARBON_COMMON_RAW_HASHTABLE_METADATA_GROUP_H_
+#endif  // CARBON_COMMON\RAW_HASHTABLE_METADATA_GROUP_H_

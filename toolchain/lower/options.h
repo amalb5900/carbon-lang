@@ -41,4 +41,4 @@ struct LowerToLLVMOptions {
 
 }  // namespace Carbon::Lower
 
-#endif  // CARBON_TOOLCHAIN_LOWER_OPTIONS_H_
+#endif  // CARBON_TOOLCHAIN\LOWER\OPTIONS_H_

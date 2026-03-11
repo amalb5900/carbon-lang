@@ -17,4 +17,4 @@ auto RunTestFile(const FileTestBase& test_base, bool dump_output,
 
 }  // namespace Carbon::Testing
 
-#endif  // CARBON_TESTING_FILE_TEST_RUN_TEST_H_
+#endif  // CARBON_TESTING\FILE_TEST\RUN_TEST_H_

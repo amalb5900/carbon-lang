@@ -112,10 +112,10 @@ auto AppendDefaultClangArgs(const InstallPaths& install_paths,
                             llvm::StringRef target_str,
                             llvm::SmallVectorImpl<std::string>& args) -> void {
   args.append({
-      // Enable PIE by default, but allow it to be overridden by Clang
-      // arguments. Clang's default is configurable, but we'd like our
-      // defaults to be more stable.
-      // TODO: Decide if we want this.
+  // Enable PIE by default, but allow it to be overridden by Clang
+  // arguments. Clang's default is configurable, but we'd like our
+  // defaults to be more stable.
+  // TODO: Decide if we want this.
 #ifndef _WIN32
       "-fPIE",
 #endif
@@ -173,10 +173,10 @@ auto AppendDefaultClangArgs(const InstallPaths& install_paths,
   for (const std::filesystem::path& runtime_path :
        {install_paths.libunwind_path(), install_paths.libcxx_path(),
         install_paths.libcxxabi_path()}) {
-    args.push_back(
-        llvm::formatv("-stdlib++-isystem{0}", (runtime_path / "include").string()).str());
+    args.push_back(llvm::formatv("-stdlib++-isystem{0}",
+                                 (runtime_path / "include").string())
+                       .str());
   }
 }
 
 }  // namespace Carbon
-

@@ -73,4 +73,4 @@ inline auto IsSpace(char c) -> bool {
 
 }  // namespace Carbon::Lex
 
-#endif  // CARBON_TOOLCHAIN_LEX_CHARACTER_SET_H_
+#endif  // CARBON_TOOLCHAIN\LEX\CHARACTER_SET_H_

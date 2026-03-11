@@ -50,4 +50,4 @@ class CodeGen {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_CODEGEN_CODEGEN_H_
+#endif  // CARBON_TOOLCHAIN\CODEGEN\CODEGEN_H_

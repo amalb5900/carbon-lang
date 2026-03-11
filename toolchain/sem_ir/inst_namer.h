@@ -293,4 +293,4 @@ class InstNamer {
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_INST_NAMER_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\INST_NAMER_H_

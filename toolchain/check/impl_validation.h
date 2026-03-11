@@ -16,4 +16,4 @@ auto ValidateImplsInFile(Context& context) -> void;
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_IMPL_VALIDATION_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\IMPL_VALIDATION_H_

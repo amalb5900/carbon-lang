@@ -50,4 +50,4 @@ class BuiltinFunctionKind : public CARBON_ENUM_BASE(BuiltinFunctionKind) {
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_BUILTIN_FUNCTION_KIND_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\BUILTIN_FUNCTION_KIND_H_

@@ -98,4 +98,4 @@ class InstBlockStack {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_INST_BLOCK_STACK_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\INST_BLOCK_STACK_H_

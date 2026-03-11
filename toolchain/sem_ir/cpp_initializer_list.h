@@ -35,4 +35,4 @@ auto GetStdInitializerListLayout(const File& sem_ir, TypeId type_id)
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_CPP_INITIALIZER_LIST_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\CPP_INITIALIZER_LIST_H_

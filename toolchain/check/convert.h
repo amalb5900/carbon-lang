@@ -213,4 +213,4 @@ auto DiscardExpr(Context& context, SemIR::InstId expr_id) -> void;
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_CONVERT_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\CONVERT_H_

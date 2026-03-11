@@ -29,4 +29,4 @@ class FileEmitter : public Emitter<llvm::StringRef> {
 
 }  // namespace Carbon::Diagnostics
 
-#endif  // CARBON_TOOLCHAIN_DIAGNOSTICS_FILE_DIAGNOSTICS_H_
+#endif  // CARBON_TOOLCHAIN\DIAGNOSTICS\FILE_DIAGNOSTICS_H_

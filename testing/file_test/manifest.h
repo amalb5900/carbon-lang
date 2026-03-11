@@ -18,4 +18,4 @@ auto GetFileTestManifest() -> llvm::SmallVector<std::string>;
 
 }  // namespace Carbon::Testing
 
-#endif  // CARBON_TESTING_FILE_TEST_MANIFEST_H_
+#endif  // CARBON_TESTING\FILE_TEST\MANIFEST_H_

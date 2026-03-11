@@ -15,4 +15,4 @@ auto MapCppAccess(clang::DeclAccessPair access_pair) -> SemIR::AccessKind;
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_CPP_ACCESS_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\CPP\ACCESS_H_

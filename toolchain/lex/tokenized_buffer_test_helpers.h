@@ -146,4 +146,4 @@ MATCHER_P(HasTokens, raw_all_expected, "") {
 
 }  // namespace Carbon::Testing
 
-#endif  // CARBON_TOOLCHAIN_LEX_TOKENIZED_BUFFER_TEST_HELPERS_H_
+#endif  // CARBON_TOOLCHAIN\LEX\TOKENIZED_BUFFER_TEST_HELPERS_H_

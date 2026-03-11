@@ -99,4 +99,4 @@ class NodeIdTraversal {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_NODE_ID_TRAVERSAL_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\NODE_ID_TRAVERSAL_H_

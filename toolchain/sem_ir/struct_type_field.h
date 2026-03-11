@@ -37,4 +37,4 @@ inline auto CarbonHashValue(const StructTypeField& value, uint64_t seed)
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_STRUCT_TYPE_FIELD_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\STRUCT_TYPE_FIELD_H_

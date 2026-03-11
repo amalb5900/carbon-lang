@@ -536,4 +536,4 @@ auto Emitter<LocT>::MakeAny(Arg arg) -> llvm::Any {
 
 }  // namespace Carbon::Diagnostics
 
-#endif  // CARBON_TOOLCHAIN_DIAGNOSTICS_EMITTER_H_
+#endif  // CARBON_TOOLCHAIN\DIAGNOSTICS\EMITTER_H_

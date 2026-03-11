@@ -277,4 +277,4 @@ auto ExtractScrutineeType(const File& sem_ir, TypeId type_id) -> TypeId;
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_TYPE_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\TYPE_H_

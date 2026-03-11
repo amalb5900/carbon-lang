@@ -102,4 +102,4 @@ class StringLiteral {
 
 }  // namespace Carbon::Lex
 
-#endif  // CARBON_TOOLCHAIN_LEX_STRING_LITERAL_H_
+#endif  // CARBON_TOOLCHAIN\LEX\STRING_LITERAL_H_

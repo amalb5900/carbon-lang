@@ -116,4 +116,4 @@ class FullPatternStack {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_FULL_PATTERN_STACK_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\FULL_PATTERN_STACK_H_

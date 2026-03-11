@@ -83,4 +83,4 @@ auto GetCanonicalFileAndInstId(const File* sem_ir, InstId inst_id)
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_IMPORT_IR_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\IMPORT_IR_H_

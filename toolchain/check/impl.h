@@ -94,4 +94,4 @@ auto CheckConstraintIsInterface(Context& context, SemIR::InstId impl_decl_id,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_IMPL_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\IMPL_H_

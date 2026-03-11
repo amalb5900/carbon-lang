@@ -42,7 +42,7 @@ static auto Main(int argc, char** argv) -> ErrorOr<int> {
   std::filesystem::path exe_path = busybox_info.bin_path.string();
   exe_path = SetWorkingDirForBazelRun(exe_path);
 
-  #ifdef _WIN32
+#ifdef _WIN32
   const auto install_paths = InstallPaths::MakeExeRelative(exe_path.string());
 #else
   const auto install_paths = InstallPaths::MakeExeRelative(exe_path.native());
@@ -55,7 +55,8 @@ static auto Main(int argc, char** argv) -> ErrorOr<int> {
   // path resolution which this overrides in favor of using the busybox itself
   // for symbolization.
 #ifdef _WIN32
-  _putenv_s("LLVM_SYMBOLIZER_PATH",
+  _putenv_s(
+      "LLVM_SYMBOLIZER_PATH",
       (install_paths.llvm_install_bin() / "llvm-symbolizer").string().c_str());
 #else
   setenv(
@@ -154,22 +155,34 @@ static auto Main(int argc, char** argv) -> ErrorOr<int> {
 
 auto main(int argc, char** argv) -> int {
 #ifdef _WIN32
-  // Windows default thread stack is 1MB. Carbon prelude loading recurses deeply through ~28 files, causing stack overflow (0xC00000FD). Use 64MB thread.
-  struct Args { int argc; char** argv; int result; };
+  // Windows default thread stack is 1MB. Carbon prelude loading recurses deeply
+  // through ~28 files, causing stack overflow (0xC00000FD). Use 64MB thread.
+  struct Args {
+    int argc;
+    char** argv;
+    int result;
+  };
   Args targs = {argc, argv, 1};
-  HANDLE t = CreateThread(nullptr, 64UL*1024UL*1024UL, [](LPVOID p) -> DWORD {
-    auto* a = reinterpret_cast<Args*>(p);
-    auto r = Carbon::Main(a->argc, a->argv);
-    a->result = r.ok() ? *r : 1;
-    if (!r.ok()) llvm::errs() << "error: " << r.error() << "\n";
-    return (DWORD)a->result;
-  }, &targs, 0, nullptr);
+  HANDLE t = CreateThread(
+      nullptr, 64UL * 1024UL * 1024UL,
+      [](LPVOID p) -> DWORD {
+        auto* a = reinterpret_cast<Args*>(p);
+        auto r = Carbon::Main(a->argc, a->argv);
+        a->result = r.ok() ? *r : 1;
+        if (!r.ok()) {
+          llvm::errs() << "error: " << r.error() << "\n";
+        }
+        return (DWORD)a->result;
+      },
+      &targs, 0, nullptr);
   WaitForSingleObject(t, INFINITE);
   CloseHandle(t);
   return targs.result;
 #else
   auto result = Carbon::Main(argc, argv);
-  if (result.ok()) { return *result; }
+  if (result.ok()) {
+    return *result;
+  }
   llvm::errs() << "error: " << result.error() << "\n";
   return EXIT_FAILURE;
 #endif

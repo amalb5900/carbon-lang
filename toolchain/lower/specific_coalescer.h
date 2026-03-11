@@ -160,4 +160,4 @@ class SpecificCoalescer {
 
 }  // namespace Carbon::Lower
 
-#endif  // CARBON_TOOLCHAIN_LOWER_SPECIFIC_COALESCER_H_
+#endif  // CARBON_TOOLCHAIN\LOWER\SPECIFIC_COALESCER_H_

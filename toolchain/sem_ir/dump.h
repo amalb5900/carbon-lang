@@ -51,4 +51,4 @@ auto Dump(const File& file, TypeId type_id) -> std::string;
 
 #endif  // NDEBUG
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_DUMP_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\DUMP_H_

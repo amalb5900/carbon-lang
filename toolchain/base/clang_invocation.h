@@ -57,4 +57,4 @@ auto AppendDefaultClangArgs(const InstallPaths& install_paths,
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_BASE_CLANG_INVOCATION_H_
+#endif  // CARBON_TOOLCHAIN\BASE\CLANG_INVOCATION_H_

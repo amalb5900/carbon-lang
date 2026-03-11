@@ -16,4 +16,4 @@ auto CreateGlobalDecl(const clang::NamedDecl* decl) -> clang::GlobalDecl;
 
 }  // namespace Carbon::Lower
 
-#endif  // CARBON_TOOLCHAIN_LOWER_CLANG_GLOBAL_DECL_H_
+#endif  // CARBON_TOOLCHAIN\LOWER\CLANG_GLOBAL_DECL_H_

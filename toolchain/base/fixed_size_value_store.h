@@ -196,4 +196,4 @@ class FixedSizeValueStore {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_BASE_FIXED_SIZE_VALUE_STORE_H_
+#endif  // CARBON_TOOLCHAIN\BASE\FIXED_SIZE_VALUE_STORE_H_

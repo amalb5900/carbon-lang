@@ -191,4 +191,4 @@ auto EvalConstantInst() -> void = delete;
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_EVAL_INST_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\EVAL_INST_H_

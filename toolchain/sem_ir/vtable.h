@@ -33,4 +33,4 @@ using VtableStore = ValueStore<VtableId, Vtable, Tag<CheckIRId>>;
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_VTABLE_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\VTABLE_H_

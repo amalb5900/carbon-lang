@@ -115,4 +115,4 @@ class PendingBlock {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_PENDING_BLOCK_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\PENDING_BLOCK_H_

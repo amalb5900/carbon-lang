@@ -28,4 +28,4 @@ auto FinishAst(Context& context) -> void;
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_CPP_GENERATE_AST_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\CPP\GENERATE_AST_H_

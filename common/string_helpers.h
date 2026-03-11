@@ -67,4 +67,4 @@ auto BuildCStrArgs(llvm::StringRef tool_path,
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON_STRING_HELPERS_H_
+#endif  // CARBON_COMMON\STRING_HELPERS_H_

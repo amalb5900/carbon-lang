@@ -288,4 +288,4 @@ class DeclNameStack {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_DECL_NAME_STACK_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\DECL_NAME_STACK_H_

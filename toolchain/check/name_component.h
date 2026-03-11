@@ -59,4 +59,4 @@ auto PopNameComponentWithoutParams(Context& context, Lex::TokenKind introducer)
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_NAME_COMPONENT_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\NAME_COMPONENT_H_

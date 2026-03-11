@@ -178,4 +178,4 @@ inline constexpr bool HasKindMember<T, decltype(&T::Kind)> = true;
 
 }  // namespace Carbon::Parse
 
-#endif  // CARBON_TOOLCHAIN_PARSE_NODE_KIND_H_
+#endif  // CARBON_TOOLCHAIN\PARSE\NODE_KIND_H_

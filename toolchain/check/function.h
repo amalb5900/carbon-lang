@@ -135,4 +135,4 @@ auto FinishFunctionDefinition(Context& context, SemIR::FunctionId function_id)
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_FUNCTION_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\FUNCTION_H_

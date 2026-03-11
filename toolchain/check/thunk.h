@@ -36,4 +36,4 @@ auto BuildThunkDefinition(Context& context,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_THUNK_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\THUNK_H_

@@ -184,4 +184,4 @@ inline auto PrecedenceGroup::ForRequirements() -> PrecedenceGroup {
 
 }  // namespace Carbon::Parse
 
-#endif  // CARBON_TOOLCHAIN_PARSE_PRECEDENCE_H_
+#endif  // CARBON_TOOLCHAIN\PARSE\PRECEDENCE_H_

@@ -25,4 +25,4 @@ auto ComputeClassObjectRepr(Context& context, Parse::ClassDefinitionId node_id,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_CLASS_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\CLASS_H_

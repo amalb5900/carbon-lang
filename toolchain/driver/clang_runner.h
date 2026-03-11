@@ -132,4 +132,4 @@ class ClangRunner : ToolRunnerBase {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_DRIVER_CLANG_RUNNER_H_
+#endif  // CARBON_TOOLCHAIN\DRIVER\CLANG_RUNNER_H_

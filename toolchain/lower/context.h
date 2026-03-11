@@ -196,4 +196,4 @@ class Context {
 
 }  // namespace Carbon::Lower
 
-#endif  // CARBON_TOOLCHAIN_LOWER_CONTEXT_H_
+#endif  // CARBON_TOOLCHAIN\LOWER\CONTEXT_H_

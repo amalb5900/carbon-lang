@@ -38,4 +38,4 @@ class FormatSubcommand : public DriverSubcommand {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_DRIVER_FORMAT_SUBCOMMAND_H_
+#endif  // CARBON_TOOLCHAIN\DRIVER\FORMAT_SUBCOMMAND_H_

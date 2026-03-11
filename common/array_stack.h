@@ -102,4 +102,4 @@ class ArrayStack {
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON_ARRAY_STACK_H_
+#endif  // CARBON_COMMON\ARRAY_STACK_H_

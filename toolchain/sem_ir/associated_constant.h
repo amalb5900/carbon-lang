@@ -50,4 +50,4 @@ using AssociatedConstantStore =
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_ASSOCIATED_CONSTANT_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\ASSOCIATED_CONSTANT_H_

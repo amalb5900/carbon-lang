@@ -53,4 +53,4 @@ template <TemplateString FormatStr, typename... Ts>
 #define CARBON_VLOG(FormatStr, ...) \
   CARBON_VLOG_TO(vlog_stream_, FormatStr, __VA_ARGS__)
 
-#endif  // CARBON_COMMON_VLOG_H_
+#endif  // CARBON_COMMON\VLOG_H_

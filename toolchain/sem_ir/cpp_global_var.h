@@ -54,4 +54,4 @@ using CppGlobalVarStore = CanonicalValueStore<CppGlobalVarId, CppGlobalVarKey,
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_CPP_GLOBAL_VAR_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\CPP_GLOBAL_VAR_H_

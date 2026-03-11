@@ -62,4 +62,4 @@ auto TryGetExistingDecl(Context& context, const NameComponent& name,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_INTERFACE_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\INTERFACE_H_

@@ -307,4 +307,4 @@ struct DenseMapInfo<Carbon::RawHashtable::LowZeroBitInt<LowZeroBits>> {
 
 }  // namespace llvm
 
-#endif  // CARBON_COMMON_RAW_HASHTABLE_BENCHMARK_HELPERS_H_
+#endif  // CARBON_COMMON\RAW_HASHTABLE_BENCHMARK_HELPERS_H_

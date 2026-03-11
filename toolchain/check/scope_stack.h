@@ -375,4 +375,4 @@ struct ScopeStack::SuspendedScope : public MoveOnly<SuspendedScope> {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_SCOPE_STACK_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\SCOPE_STACK_H_

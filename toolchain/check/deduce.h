@@ -29,4 +29,4 @@ auto DeduceImplArguments(Context& context, SemIR::LocId loc_id,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_DEDUCE_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\DEDUCE_H_

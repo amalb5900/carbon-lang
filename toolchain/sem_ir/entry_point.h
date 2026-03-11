@@ -15,4 +15,4 @@ auto IsEntryPoint(const File& file, FunctionId function_id) -> bool;
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_ENTRY_POINT_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\ENTRY_POINT_H_

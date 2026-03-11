@@ -46,4 +46,4 @@ auto LookupCppImpl(Context& context, SemIR::LocId loc_id,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_CPP_IMPL_LOOKUP_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\CPP\IMPL_LOOKUP_H_

@@ -138,4 +138,4 @@ inline auto EntityNameStore::MakeCanonical(EntityNameId id) -> EntityNameId {
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_ENTITY_NAME_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\ENTITY_NAME_H_

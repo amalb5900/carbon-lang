@@ -15,4 +15,4 @@ concept SameAsOneOf = (std::same_as<T, OtherT> || ...);
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON_CONCEPTS_H_
+#endif  // CARBON_COMMON\CONCEPTS_H_

@@ -61,4 +61,4 @@ auto LocalPatternMatch(Context& context, SemIR::InstId pattern_id,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_PATTERN_MATCH_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\PATTERN_MATCH_H_

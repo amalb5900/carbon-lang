@@ -19,7 +19,6 @@ HANDLE _carbon_dir_handles[512] = {};
 volatile LONG _carbon_dir_next = 0;
 #endif
 
-
 namespace Carbon::Filesystem {
 
 // Render an error number from `errno` to the provided stream using the richest
@@ -697,7 +696,8 @@ auto DirRef::ReadlinkSlow(const std::filesystem::path& path)
 
 auto MakeTmpDir() -> ErrorOr<RemovingDir, Error> {
 #ifdef _WIN32
-  std::filesystem::path tmpdir_path = getenv("TEMP") ? getenv("TEMP") : "C:\\Temp";
+  std::filesystem::path tmpdir_path =
+      getenv("TEMP") ? getenv("TEMP") : "C:\\Temp";
 #else
   std::filesystem::path tmpdir_path = "/tmp";
 #endif
@@ -730,7 +730,7 @@ auto MakeTmpDirWithPrefix(std::filesystem::path prefix)
 #ifdef _WIN32
   std::string tmpdir_path_buffer = tmpdir_path.string();
 #else
-  #ifdef _WIN32
+#ifdef _WIN32
   std::string tmpdir_path_buffer = tmpdir_path.string();
 #else
   std::string tmpdir_path_buffer = tmpdir_path.native();

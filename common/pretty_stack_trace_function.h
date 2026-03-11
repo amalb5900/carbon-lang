@@ -28,4 +28,4 @@ class PrettyStackTraceFunction : public llvm::PrettyStackTraceEntry {
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON_PRETTY_STACK_TRACE_FUNCTION_H_
+#endif  // CARBON_COMMON\PRETTY_STACK_TRACE_FUNCTION_H_

@@ -34,4 +34,4 @@ static auto CallWithCapturedOutput(std::string& out, std::string& err,
 
 }  // namespace Carbon::Testing
 
-#endif  // CARBON_TESTING_BASE_CAPTURE_STD_STREAMS_H_
+#endif  // CARBON_TESTING\BASE\CAPTURE_STD_STREAMS_H_

@@ -44,4 +44,4 @@ class GlobalInit {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_GLOBAL_INIT_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\GLOBAL_INIT_H_

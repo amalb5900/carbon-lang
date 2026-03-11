@@ -110,4 +110,4 @@ auto ProcessTestFile(llvm::StringRef test_name, bool running_autoupdate)
 
 }  // namespace Carbon::Testing
 
-#endif  // CARBON_TESTING_FILE_TEST_TEST_FILE_H_
+#endif  // CARBON_TESTING\FILE_TEST\TEST_FILE_H_

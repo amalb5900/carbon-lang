@@ -118,4 +118,4 @@ auto operator<<(StreamT& standard_out, const ClassT& value) -> StreamT& {
 
 }  // namespace llvm
 
-#endif  // CARBON_COMMON_OSTREAM_H_
+#endif  // CARBON_COMMON\OSTREAM_H_

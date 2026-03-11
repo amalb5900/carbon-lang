@@ -31,4 +31,4 @@ class ValueStoreTypes {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_BASE_VALUE_STORE_TYPES_H_
+#endif  // CARBON_TOOLCHAIN\BASE\VALUE_STORE_TYPES_H_

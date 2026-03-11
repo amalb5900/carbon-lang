@@ -44,4 +44,4 @@ class BuildRuntimesSubcommand : public DriverSubcommand {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_DRIVER_BUILD_RUNTIMES_SUBCOMMAND_H_
+#endif  // CARBON_TOOLCHAIN\DRIVER\BUILD_RUNTIMES_SUBCOMMAND_H_

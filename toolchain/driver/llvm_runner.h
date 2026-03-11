@@ -23,4 +23,4 @@ class LLVMRunner : ToolRunnerBase {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_DRIVER_LLVM_RUNNER_H_
+#endif  // CARBON_TOOLCHAIN\DRIVER\LLVM_RUNNER_H_

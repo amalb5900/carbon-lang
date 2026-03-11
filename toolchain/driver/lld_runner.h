@@ -33,4 +33,4 @@ class LldRunner : ToolRunnerBase {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_DRIVER_LLD_RUNNER_H_
+#endif  // CARBON_TOOLCHAIN\DRIVER\LLD_RUNNER_H_

@@ -29,4 +29,4 @@ auto Dump(const TokenizedBuffer& tokens, TokenIndex token) -> std::string;
 
 #endif  // NDEBUG
 
-#endif  // CARBON_TOOLCHAIN_LEX_DUMP_H_
+#endif  // CARBON_TOOLCHAIN\LEX\DUMP_H_

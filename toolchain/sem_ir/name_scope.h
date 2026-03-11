@@ -371,4 +371,4 @@ class NameScopeStore {
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_NAME_SCOPE_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\NAME_SCOPE_H_

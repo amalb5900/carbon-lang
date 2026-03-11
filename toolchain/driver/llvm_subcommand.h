@@ -56,4 +56,4 @@ class LLVMSubcommand : public DriverSubcommand {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_DRIVER_LLVM_SUBCOMMAND_H_
+#endif  // CARBON_TOOLCHAIN\DRIVER\LLVM_SUBCOMMAND_H_

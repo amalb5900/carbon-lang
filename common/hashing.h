@@ -1026,4 +1026,4 @@ inline auto Hasher::HashSizedBytes(llvm::ArrayRef<std::byte> bytes) -> void {
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON_HASHING_H_
+#endif  // CARBON_COMMON\HASHING_H_

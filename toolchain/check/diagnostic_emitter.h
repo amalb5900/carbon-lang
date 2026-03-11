@@ -57,4 +57,4 @@ class DiagnosticEmitter : public DiagnosticEmitterBase {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_DIAGNOSTIC_EMITTER_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\DIAGNOSTIC_EMITTER_H_

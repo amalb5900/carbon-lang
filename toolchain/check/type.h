@@ -166,4 +166,4 @@ auto TryGetCanonicalFacetValue(Context& context, SemIR::InstId inst_id)
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_TYPE_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\TYPE_H_

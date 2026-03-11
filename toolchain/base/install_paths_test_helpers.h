@@ -17,4 +17,4 @@ auto AddPreludeFilesToVfs(
 
 }  // namespace Carbon::Testing
 
-#endif  // CARBON_TOOLCHAIN_BASE_INSTALL_PATHS_TEST_HELPERS_H_
+#endif  // CARBON_TOOLCHAIN\BASE\INSTALL_PATHS_TEST_HELPERS_H_

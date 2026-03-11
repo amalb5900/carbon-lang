@@ -18,4 +18,4 @@ auto BuildNameRef(Context& context, SemIR::LocId loc_id, SemIR::NameId name_id,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_NAME_REF_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\NAME_REF_H_

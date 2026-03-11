@@ -27,4 +27,4 @@ extern const char build_target[];
 
 }  // namespace Carbon::BuildData::Internal
 
-#endif  // CARBON_COMMON_BUILD_DATA_LINKSTAMP_H_
+#endif  // CARBON_COMMON\BUILD_DATA_LINKSTAMP_H_

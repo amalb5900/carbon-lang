@@ -428,4 +428,4 @@ auto Formatter::GetFormatArgFn(TypeEnum<Types...> id_kind) -> FormatArgFnT* {
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_FORMATTER_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\FORMATTER_H_

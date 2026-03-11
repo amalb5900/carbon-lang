@@ -89,4 +89,4 @@ auto GetConstantFacetValueForTypeAndInterface(
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_FACET_TYPE_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\FACET_TYPE_H_

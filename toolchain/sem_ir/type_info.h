@@ -250,4 +250,4 @@ inline constexpr NumericTypeLiteralInfo NumericTypeLiteralInfo::Invalid = {
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_TYPE_INFO_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\TYPE_INFO_H_

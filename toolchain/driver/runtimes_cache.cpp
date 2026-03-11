@@ -48,8 +48,8 @@ auto Runtimes::Destroy() -> void {
   auto close_result = std::move(lock_file_).Close();
   if (!close_result.ok()) {
     // Log and continue on close errors.
-    CARBON_VLOG("Error closing lock file for runtimes '{0}': {1}", base_path_.string(),
-                close_result.error());
+    CARBON_VLOG("Error closing lock file for runtimes '{0}': {1}",
+                base_path_.string(), close_result.error());
   }
 }
 
@@ -89,7 +89,7 @@ auto Runtimes::BuildImpl(Component component, Filesystem::Duration deadline,
   CARBON_ASSIGN_OR_RETURN(
       Filesystem::ReadWriteFile lock_file,
       base_dir_.OpenReadWrite(
-          llvm::formatv(LockFileFormat, component_path.string()).str(),
+          llvm::formatv(LockFileFormat, component_path).str(),
           Filesystem::OpenAlways, /*creation_mode=*/0700));
   CARBON_VLOG("PID {0} locking cache path: {1}\n", getpid(),
               (base_path_ / component_path).string());
@@ -334,8 +334,8 @@ auto Runtimes::Cache::PruneStaleRuntimes(
     CARBON_VLOG("Unlinking non-directory entry '{0}'", name.string());
     auto result = dir_.Unlink(name);
     if (!result.ok()) {
-      CARBON_VLOG("Error unlinking non-directory entry '{0}': {1}", name.string(),
-                  result.error());
+      CARBON_VLOG("Error unlinking non-directory entry '{0}': {1}",
+                  name.string(), result.error());
     }
   }
 
@@ -352,8 +352,8 @@ auto Runtimes::Cache::PruneStaleRuntimes(
     CARBON_VLOG("Removing cache entry '{0}'", entry_name.string());
     auto rm_result = dir_.Rmtree(entry_name);
     if (!rm_result.ok() && !rm_result.error().no_entity()) {
-      CARBON_VLOG("Unable to remove old runtimes '{0}': {1}", entry_name.string(),
-                  rm_result.error());
+      CARBON_VLOG("Unable to remove old runtimes '{0}': {1}",
+                  entry_name.string(), rm_result.error());
       return false;
     }
     return true;
@@ -394,8 +394,8 @@ auto Runtimes::Cache::PruneStaleRuntimes(
       }
 
       // For other errors, assume locked.
-      CARBON_VLOG("Error opening lock file for cache entry '{0}': {1}", name.string(),
-                  lock_file_open_result.error());
+      CARBON_VLOG("Error opening lock file for cache entry '{0}': {1}",
+                  name.string(), lock_file_open_result.error());
       return false;
     }
 
@@ -451,7 +451,8 @@ auto Runtimes::Builder::Commit() && -> ErrorOr<std::filesystem::path> {
   CARBON_CHECK(dir_.path().parent_path() == runtimes_->base_path(),
                "Building a temporary directory '{0}' that is not in the "
                "runtimes tree '{1}'",
-               dir_.path().parent_path().string(), runtimes_->base_path().string());
+               dir_.path().parent_path().string(),
+               runtimes_->base_path().string());
   auto rename_result = runtimes_->base_dir().Rename(
       dir_.path().filename(), runtimes_->base_dir(), dest_);
   // If the rename was successful, then we don't need to remove anything so

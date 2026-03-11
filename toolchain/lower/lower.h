@@ -25,4 +25,4 @@ auto LowerToLLVM(
 
 }  // namespace Carbon::Lower
 
-#endif  // CARBON_TOOLCHAIN_LOWER_LOWER_H_
+#endif  // CARBON_TOOLCHAIN\LOWER\LOWER_H_

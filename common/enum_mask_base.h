@@ -148,4 +148,4 @@ constexpr const DerivedT& EnumMaskBase<DerivedT, EnumT, Names>::None =
   CARBON_DEFINE_ENUM_CLASS_NAMES(EnumMaskName)
 #define CARBON_ENUM_MASK_NAME_STRING(Name) CARBON_ENUM_CLASS_NAME_STRING(Name)
 
-#endif  // CARBON_COMMON_ENUM_MASK_BASE_H_
+#endif  // CARBON_COMMON\ENUM_MASK_BASE_H_

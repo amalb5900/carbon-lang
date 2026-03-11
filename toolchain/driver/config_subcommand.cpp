@@ -187,7 +187,8 @@ auto ConfigSubcommand::Run(DriverEnv& driver_env) -> DriverResult {
   llvm::SmallVector<ConfigDataEntry> data = {
       {.key = "CLANG_RESOURCE_DIR",
        .value = driver_env.installation->clang_resource_path().string()},
-      {.key = "INSTALL_ROOT", .value = driver_env.installation->root().string()},
+      {.key = "INSTALL_ROOT",
+       .value = driver_env.installation->root().string()},
       {.key = "LLVM_BINDIR",
        .value = driver_env.installation->llvm_install_bin().string()},
       {.key = "VERSION", .value = Version::String.str()},

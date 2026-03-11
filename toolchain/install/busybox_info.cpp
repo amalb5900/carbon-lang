@@ -57,12 +57,14 @@ auto GetBusyboxInfo(const char* argv0) -> ErrorOr<BusyboxInfo> {
 #endif
   }
 
-  #ifdef _WIN32
-  BusyboxInfo info = {.bin_path = FindExecutablePath(argv0_path.string().c_str()),
+#ifdef _WIN32
+  BusyboxInfo info = {
+    .bin_path = FindExecutablePath(argv0_path.string().c_str()),
 #else
   BusyboxInfo info = {.bin_path = FindExecutablePath(argv0_path.c_str()),
 #endif
-                      .mode = GetMode(argv0_path)};
+    .mode = GetMode(argv0_path)
+  };
 
   // Now search through any symlinks to locate the installed busybox binary.
   while (true) {
@@ -79,7 +81,11 @@ auto GetBusyboxInfo(const char* argv0) -> ErrorOr<BusyboxInfo> {
           access.ok() && *access) {
         // Normalize path separators for Windows
         std::string norm_path = busybox_path;
-        for (auto& c : norm_path) { if (c == '/') c = '\\'; }
+        for (auto& c : norm_path) {
+          if (c == '/') {
+            c = '\\';
+          }
+        }
         info.bin_path = norm_path;
       }
       return info;
@@ -117,7 +123,11 @@ auto GetBusyboxInfo(const char* argv0) -> ErrorOr<BusyboxInfo> {
           access.ok() && *access) {
         // Normalize path separators for Windows
         std::string norm_path = busybox_path.string();
-        for (auto& c : norm_path) { if (c == '/') c = '\\'; }
+        for (auto& c : norm_path) {
+          if (c == '/') {
+            c = '\\';
+          }
+        }
         info.bin_path = norm_path;
         return info;
       }

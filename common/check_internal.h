@@ -168,4 +168,4 @@ template <TemplateString Kind, TemplateString File, int Line,
 #define CARBON_INTERNAL_FATAL_NORETURN_SUFFIX() std::abort()
 #endif
 
-#endif  // CARBON_COMMON_CHECK_INTERNAL_H_
+#endif  // CARBON_COMMON\CHECK_INTERNAL_H_

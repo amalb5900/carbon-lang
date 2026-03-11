@@ -99,4 +99,4 @@ class SourceBuffer {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN_SOURCE_SOURCE_BUFFER_H_
+#endif  // CARBON_TOOLCHAIN\SOURCE\SOURCE_BUFFER_H_

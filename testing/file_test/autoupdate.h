@@ -261,4 +261,4 @@ class FileTestAutoupdater {
 
 }  // namespace Carbon::Testing
 
-#endif  // CARBON_TESTING_FILE_TEST_AUTOUPDATE_H_
+#endif  // CARBON_TESTING\FILE_TEST\AUTOUPDATE_H_

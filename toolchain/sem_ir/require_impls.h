@@ -51,4 +51,4 @@ using RequireImplsBlockStore =
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN_SEM_IR_REQUIRE_IMPLS_H_
+#endif  // CARBON_TOOLCHAIN\SEM_IR\REQUIRE_IMPLS_H_

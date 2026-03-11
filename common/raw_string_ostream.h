@@ -61,4 +61,4 @@ class RawStringOstream : public llvm::raw_pwrite_stream {
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON_RAW_STRING_OSTREAM_H_
+#endif  // CARBON_COMMON\RAW_STRING_OSTREAM_H_

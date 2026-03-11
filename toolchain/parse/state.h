@@ -31,4 +31,4 @@ static_assert(sizeof(StateKind) == 1, "State includes padding!");
 
 }  // namespace Carbon::Parse
 
-#endif  // CARBON_TOOLCHAIN_PARSE_STATE_H_
+#endif  // CARBON_TOOLCHAIN\PARSE\STATE_H_

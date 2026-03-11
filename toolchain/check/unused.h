@@ -20,4 +20,4 @@ auto CheckUnusedBinding(Context& context, SemIR::NameId name_id,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN_CHECK_UNUSED_H_
+#endif  // CARBON_TOOLCHAIN\CHECK\UNUSED_H_
