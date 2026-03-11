@@ -208,4 +208,4 @@ struct NodeIdNot : public NodeId {
 
 }  // namespace Carbon::Parse
 
-#endif  // CARBON_TOOLCHAIN\PARSE\NODE_IDS_H_
+#endif  // CARBON_TOOLCHAIN_PARSE_NODE_IDS_H_

@@ -85,4 +85,4 @@ class RegionStack {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\REGION_STACK_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_REGION_STACK_H_

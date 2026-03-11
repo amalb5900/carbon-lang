@@ -127,4 +127,4 @@ class GenericRegionStack {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\GENERIC_REGION_STACK_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_GENERIC_REGION_STACK_H_

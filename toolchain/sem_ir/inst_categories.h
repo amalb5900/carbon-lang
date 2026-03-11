@@ -372,4 +372,4 @@ struct AnyStructType {
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN\SEM_IR\INST_CATEGORIES_H_
+#endif  // CARBON_TOOLCHAIN_SEM_IR_INST_CATEGORIES_H_

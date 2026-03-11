@@ -80,4 +80,4 @@ class Formatter {
 
 }  // namespace Carbon::Format
 
-#endif  // CARBON_TOOLCHAIN\FORMAT\FORMATTER_H_
+#endif  // CARBON_TOOLCHAIN_FORMAT_FORMATTER_H_

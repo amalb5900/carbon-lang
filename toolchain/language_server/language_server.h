@@ -23,4 +23,4 @@ auto Run(const InstallPaths& installation, FILE* input_stream,
 
 }  // namespace Carbon::LanguageServer
 
-#endif  // CARBON_TOOLCHAIN\LANGUAGE_SERVER\LANGUAGE_SERVER_H_
+#endif  // CARBON_TOOLCHAIN_LANGUAGE_SERVER_LANGUAGE_SERVER_H_

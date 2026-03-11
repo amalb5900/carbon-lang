@@ -60,4 +60,4 @@ auto RequireDefaultFinalOnlyInInterfaces(Context& context,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\MODIFIERS_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_MODIFIERS_H_

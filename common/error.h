@@ -272,4 +272,4 @@ class ErrorBuilder {
       CARBON_MAKE_UNIQUE_NAME(_llvm_expected_line, __LINE__, __COUNTER__), \
       CARBON_PROTECT_COMMAS(var), CARBON_PROTECT_COMMAS(expr))
 
-#endif  // CARBON_COMMON\ERROR_H_
+#endif  // CARBON_COMMON_ERROR_H_

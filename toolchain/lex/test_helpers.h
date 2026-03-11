@@ -57,4 +57,4 @@ class SingleTokenDiagnosticEmitter : public Diagnostics::Emitter<const char*> {
 
 }  // namespace Carbon::Testing
 
-#endif  // CARBON_TOOLCHAIN\LEX\TEST_HELPERS_H_
+#endif  // CARBON_TOOLCHAIN_LEX_TEST_HELPERS_H_

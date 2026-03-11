@@ -854,4 +854,4 @@ auto OneOfArgBuilder::OneOfImpl(const OneOfValueT<U> (&input_values)[N],
 
 }  // namespace Carbon::CommandLine
 
-#endif  // CARBON_COMMON\COMMAND_LINE_H_
+#endif  // CARBON_COMMON_COMMAND_LINE_H_

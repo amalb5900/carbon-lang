@@ -56,4 +56,4 @@ auto PerformTupleAccess(Context& context, SemIR::LocId loc_id,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\MEMBER_ACCESS_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_MEMBER_ACCESS_H_

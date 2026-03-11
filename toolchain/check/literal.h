@@ -60,4 +60,4 @@ auto MakeStringType(Context& context, SemIR::LocId loc_id) -> TypeExpr;
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\LITERAL_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_LITERAL_H_

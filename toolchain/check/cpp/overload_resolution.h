@@ -37,4 +37,4 @@ auto PerformCppOverloadResolution(
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\CPP\OVERLOAD_RESOLUTION_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_CPP_OVERLOAD_RESOLUTION_H_

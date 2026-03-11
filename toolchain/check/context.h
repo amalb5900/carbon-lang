@@ -543,4 +543,4 @@ inline constexpr Context::FormExpr Context::FormExpr::Error = {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\CONTEXT_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_CONTEXT_H_

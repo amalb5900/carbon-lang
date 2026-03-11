@@ -155,4 +155,4 @@ struct llvm::format_provider<Carbon::Lex::TokenKind> {
   }
 };
 
-#endif  // CARBON_TOOLCHAIN\LEX\TOKEN_KIND_H_
+#endif  // CARBON_TOOLCHAIN_LEX_TOKEN_KIND_H_

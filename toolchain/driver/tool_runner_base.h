@@ -43,4 +43,4 @@ class ToolRunnerBase {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN\DRIVER\TOOL_RUNNER_BASE_H_
+#endif  // CARBON_TOOLCHAIN_DRIVER_TOOL_RUNNER_BASE_H_

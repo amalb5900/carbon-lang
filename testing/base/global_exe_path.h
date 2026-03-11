@@ -23,4 +23,4 @@ auto SetExePath(const char* argv_zero) -> void;
 
 }  // namespace Carbon::Testing
 
-#endif  // CARBON_TESTING\BASE\GLOBAL_EXE_PATH_H_
+#endif  // CARBON_TESTING_BASE_GLOBAL_EXE_PATH_H_

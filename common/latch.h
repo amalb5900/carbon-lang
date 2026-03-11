@@ -132,4 +132,4 @@ class Latch::Handle {
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON\LATCH_H_
+#endif  // CARBON_COMMON_LATCH_H_

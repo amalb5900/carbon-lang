@@ -138,4 +138,4 @@ inline constexpr StringLiteralValueId StringLiteralValueId::None(
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN\BASE\VALUE_IDS_H_
+#endif  // CARBON_TOOLCHAIN_BASE_VALUE_IDS_H_

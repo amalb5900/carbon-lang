@@ -383,4 +383,4 @@ inline auto TokenizedBuffer::AddToken(TokenInfo info) -> TokenIndex {
 
 }  // namespace Carbon::Lex
 
-#endif  // CARBON_TOOLCHAIN\LEX\TOKENIZED_BUFFER_H_
+#endif  // CARBON_TOOLCHAIN_LEX_TOKENIZED_BUFFER_H_

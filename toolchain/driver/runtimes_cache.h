@@ -443,4 +443,4 @@ class Runtimes::Builder : public Printable<Builder> {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN\DRIVER\RUNTIMES_CACHE_H_
+#endif  // CARBON_TOOLCHAIN_DRIVER_RUNTIMES_CACHE_H_

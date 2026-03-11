@@ -296,4 +296,4 @@ class SourceGen {
 
 }  // namespace Carbon::Testing
 
-#endif  // CARBON_TESTING\BASE\SOURCE_GEN_H_
+#endif  // CARBON_TESTING_BASE_SOURCE_GEN_H_

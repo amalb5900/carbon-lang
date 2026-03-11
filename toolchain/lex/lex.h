@@ -39,4 +39,4 @@ auto Lex(SharedValueStores& value_stores,
 
 }  // namespace Carbon::Lex
 
-#endif  // CARBON_TOOLCHAIN\LEX\LEX_H_
+#endif  // CARBON_TOOLCHAIN_LEX_LEX_H_

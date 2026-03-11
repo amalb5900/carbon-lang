@@ -172,4 +172,4 @@ class DeferredDefinitionWorklist {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\DEFERRED_DEFINITION_WORKLIST_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_DEFERRED_DEFINITION_WORKLIST_H_

@@ -134,4 +134,4 @@ struct EntityWithParamsBase {
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN\SEM_IR\ENTITY_WITH_PARAMS_BASE_H_
+#endif  // CARBON_TOOLCHAIN_SEM_IR_ENTITY_WITH_PARAMS_BASE_H_

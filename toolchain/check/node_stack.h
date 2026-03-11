@@ -659,4 +659,4 @@ inline auto NodeStack::PeekPattern() const -> SemIR::InstId {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\NODE_STACK_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_NODE_STACK_H_

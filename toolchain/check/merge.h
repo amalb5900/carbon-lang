@@ -111,4 +111,4 @@ inline auto CheckRedeclParamsMatch(Context& context,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\MERGE_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_MERGE_H_

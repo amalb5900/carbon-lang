@@ -67,4 +67,4 @@ struct llvm::format_provider<Carbon::Diagnostics::IntAsSelect> {
                      raw_ostream& out, StringRef style) -> void;
 };
 
-#endif  // CARBON_TOOLCHAIN\DIAGNOSTICS\FORMAT_PROVIDERS_H_
+#endif  // CARBON_TOOLCHAIN_DIAGNOSTICS_FORMAT_PROVIDERS_H_

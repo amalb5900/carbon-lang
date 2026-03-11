@@ -58,4 +58,4 @@ auto ImportInterface(Context& context, SemIR::ImportIRId import_ir_id,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\IMPORT_REF_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_IMPORT_REF_H_

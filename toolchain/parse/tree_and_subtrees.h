@@ -302,4 +302,4 @@ auto TreeAndSubtrees::Extract(IdT id) const
 
 }  // namespace Carbon::Parse
 
-#endif  // CARBON_TOOLCHAIN\PARSE\TREE_AND_SUBTREES_H_
+#endif  // CARBON_TOOLCHAIN_PARSE_TREE_AND_SUBTREES_H_

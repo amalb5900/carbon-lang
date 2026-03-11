@@ -20,4 +20,4 @@ auto LowerConstants(FileContext& file_context,
 
 }  // namespace Carbon::Lower
 
-#endif  // CARBON_TOOLCHAIN\LOWER\CONSTANT_H_
+#endif  // CARBON_TOOLCHAIN_LOWER_CONSTANT_H_

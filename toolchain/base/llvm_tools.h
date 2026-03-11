@@ -72,4 +72,4 @@ inline constexpr llvm::ArrayRef<LLVMTool> LLVMTool::Tools = ToolsStorage;
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN\BASE\LLVM_TOOLS_H_
+#endif  // CARBON_TOOLCHAIN_BASE_LLVM_TOOLS_H_

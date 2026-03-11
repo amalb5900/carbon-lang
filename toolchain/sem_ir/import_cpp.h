@@ -22,4 +22,4 @@ struct ImportCpp : Printable<ImportCpp> {
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN\SEM_IR\IMPORT_CPP_H_
+#endif  // CARBON_TOOLCHAIN_SEM_IR_IMPORT_CPP_H_

@@ -76,4 +76,4 @@ class Timings {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN\BASE\TIMINGS_H_
+#endif  // CARBON_TOOLCHAIN_BASE_TIMINGS_H_

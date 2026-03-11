@@ -53,4 +53,4 @@ class InstFingerprinter {
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN\SEM_IR\INST_FINGERPRINTER_H_
+#endif  // CARBON_TOOLCHAIN_SEM_IR_INST_FINGERPRINTER_H_

@@ -16,4 +16,4 @@ auto CanLexInt(Diagnostics::Emitter<const char*>& emitter, llvm::StringRef text)
 
 }  // namespace Carbon::Lex
 
-#endif  // CARBON_TOOLCHAIN\LEX\HELPERS_H_
+#endif  // CARBON_TOOLCHAIN_LEX_HELPERS_H_

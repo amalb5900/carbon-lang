@@ -57,4 +57,4 @@ class FileTestLine final : public FileTestLineBase {
 
 }  // namespace Carbon::Testing
 
-#endif  // CARBON_TESTING\FILE_TEST\LINE_H_
+#endif  // CARBON_TESTING_FILE_TEST_LINE_H_

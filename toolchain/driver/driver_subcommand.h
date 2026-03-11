@@ -76,4 +76,4 @@ class DriverSubcommand {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN\DRIVER\DRIVER_SUBCOMMAND_H_
+#endif  // CARBON_TOOLCHAIN_DRIVER_DRIVER_SUBCOMMAND_H_

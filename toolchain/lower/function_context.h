@@ -360,4 +360,4 @@ class FunctionContext {
 
 }  // namespace Carbon::Lower
 
-#endif  // CARBON_TOOLCHAIN\LOWER\FUNCTION_CONTEXT_H_
+#endif  // CARBON_TOOLCHAIN_LOWER_FUNCTION_CONTEXT_H_

@@ -108,4 +108,4 @@ class LexicalLookup {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\LEXICAL_LOOKUP_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_LEXICAL_LOOKUP_H_

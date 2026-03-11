@@ -121,4 +121,4 @@ class FormatterChunks {
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN\SEM_IR\FORMATTER_CHUNKS_H_
+#endif  // CARBON_TOOLCHAIN_SEM_IR_FORMATTER_CHUNKS_H_

@@ -180,4 +180,4 @@ inline static DIR* fdopendir(int fd) {
 inline static int dirfd(DIR* dir) { return dir ? dir->fd : -1; }
 
 #endif  // _WIN32
-#endif  // CARBON_COMMON\DIRENT_H_
+#endif  // CARBON_COMMON_DIRENT_H_

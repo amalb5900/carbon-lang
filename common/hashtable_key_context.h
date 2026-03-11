@@ -232,4 +232,4 @@ auto TranslatingKeyContext<DerivedT>::KeyEq(const AnyKeyT& lhs_key,
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON\HASHTABLE_KEY_CONTEXT_H_
+#endif  // CARBON_COMMON_HASHTABLE_KEY_CONTEXT_H_

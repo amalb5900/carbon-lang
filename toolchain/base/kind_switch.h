@@ -341,4 +341,4 @@ auto Cast(SwitchT&& kind_switch_value) -> decltype(auto) {
 
 }  // namespace Carbon::Internal::Kind
 
-#endif  // CARBON_TOOLCHAIN\BASE\KIND_SWITCH_H_
+#endif  // CARBON_TOOLCHAIN_BASE_KIND_SWITCH_H_

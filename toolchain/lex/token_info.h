@@ -203,4 +203,4 @@ static_assert(sizeof(TokenInfo) == 8,
 
 }  // namespace Carbon::Lex
 
-#endif  // CARBON_TOOLCHAIN\LEX\TOKEN_INFO_H_
+#endif  // CARBON_TOOLCHAIN_LEX_TOKEN_INFO_H_

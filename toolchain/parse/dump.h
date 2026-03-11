@@ -30,4 +30,4 @@ auto Dump(const Tree& tree, NodeId node_id) -> std::string;
 
 #endif  // NDEBUG
 
-#endif  // CARBON_TOOLCHAIN\PARSE\DUMP_H_
+#endif  // CARBON_TOOLCHAIN_PARSE_DUMP_H_

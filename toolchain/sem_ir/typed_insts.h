@@ -2318,4 +2318,4 @@ concept HasTypeIdMember = std::same_as<decltype(T::type_id), TypeId>;
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN\SEM_IR\TYPED_INSTS_H_
+#endif  // CARBON_TOOLCHAIN_SEM_IR_TYPED_INSTS_H_

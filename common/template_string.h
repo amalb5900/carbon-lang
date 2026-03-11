@@ -76,4 +76,4 @@ TemplateString(const char (&str)[M]) -> TemplateString<M - 1>;
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON\TEMPLATE_STRING_H_
+#endif  // CARBON_COMMON_TEMPLATE_STRING_H_

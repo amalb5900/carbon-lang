@@ -423,4 +423,4 @@ auto Set<InputKeyT, SmallSize, InputKeyContextT>::Reset() -> void {
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON\SET_H_
+#endif  // CARBON_COMMON_SET_H_

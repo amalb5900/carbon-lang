@@ -141,4 +141,4 @@ auto CanonicalValueStore<IdT, KeyT, TagIdT, ValueT>::Reserve(size_t size)
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN\BASE\CANONICAL_VALUE_STORE_H_
+#endif  // CARBON_TOOLCHAIN_BASE_CANONICAL_VALUE_STORE_H_

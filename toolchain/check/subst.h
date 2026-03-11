@@ -118,4 +118,4 @@ auto SubstConstant(Context& context, SemIR::LocId loc_id,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\SUBST_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_SUBST_H_

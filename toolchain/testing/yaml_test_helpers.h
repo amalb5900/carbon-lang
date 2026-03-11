@@ -167,4 +167,4 @@ MATCHER_P(Scalar, matcher,
 
 }  // namespace Carbon::Testing::Yaml
 
-#endif  // CARBON_TOOLCHAIN\TESTING\YAML_TEST_HELPERS_H_
+#endif  // CARBON_TOOLCHAIN_TESTING_YAML_TEST_HELPERS_H_

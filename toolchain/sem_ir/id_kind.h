@@ -72,4 +72,4 @@ using IdKind = TypeEnum<
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN\SEM_IR\ID_KIND_H_
+#endif  // CARBON_TOOLCHAIN_SEM_IR_ID_KIND_H_

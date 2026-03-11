@@ -62,4 +62,4 @@ class CompileHelper {
 
 }  // namespace Carbon::Testing
 
-#endif  // CARBON_TOOLCHAIN\TESTING\COMPILE_HELPER_H_
+#endif  // CARBON_TOOLCHAIN_TESTING_COMPILE_HELPER_H_

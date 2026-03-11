@@ -73,4 +73,4 @@ class IncomingMessages : public clang::clangd::Transport::MessageHandler {
 
 }  // namespace Carbon::LanguageServer
 
-#endif  // CARBON_TOOLCHAIN\LANGUAGE_SERVER\INCOMING_MESSAGES_H_
+#endif  // CARBON_TOOLCHAIN_LANGUAGE_SERVER_INCOMING_MESSAGES_H_

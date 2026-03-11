@@ -1750,4 +1750,4 @@ struct File {
 
 }  // namespace Carbon::Parse
 
-#endif  // CARBON_TOOLCHAIN\PARSE\TYPED_NODES_H_
+#endif  // CARBON_TOOLCHAIN_PARSE_TYPED_NODES_H_

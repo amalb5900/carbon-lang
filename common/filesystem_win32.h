@@ -700,4 +700,4 @@ inline static int renameat(int, const wchar_t* oldp, int, const wchar_t* newp) {
 
 #endif  // _WIN32
 
-#endif  // CARBON_COMMON\FILESYSTEM_WIN32_H_
+#endif  // CARBON_COMMON_FILESYSTEM_WIN32_H_

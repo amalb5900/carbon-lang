@@ -36,4 +36,4 @@ auto Parse(Lex::TokenizedBuffer& tokens, ParseOptions options) -> Tree;
 
 }  // namespace Carbon::Parse
 
-#endif  // CARBON_TOOLCHAIN\PARSE\PARSE_H_
+#endif  // CARBON_TOOLCHAIN_PARSE_PARSE_H_

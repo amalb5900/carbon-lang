@@ -193,4 +193,4 @@ struct DiagnosticBase {
 
 }  // namespace Carbon::Diagnostics
 
-#endif  // CARBON_TOOLCHAIN\DIAGNOSTICS\DIAGNOSTIC_H_
+#endif  // CARBON_TOOLCHAIN_DIAGNOSTICS_DIAGNOSTIC_H_

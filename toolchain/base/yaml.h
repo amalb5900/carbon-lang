@@ -113,4 +113,4 @@ struct llvm::yaml::MappingTraits<Carbon::Yaml::OutputMapping> {
 static_assert(llvm::yaml::has_MappingTraits<Carbon::Yaml::OutputMapping,
                                             llvm::yaml::EmptyContext>::value);
 
-#endif  // CARBON_TOOLCHAIN\BASE\YAML_H_
+#endif  // CARBON_TOOLCHAIN_BASE_YAML_H_

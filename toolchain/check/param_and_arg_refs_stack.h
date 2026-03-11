@@ -86,4 +86,4 @@ class ParamAndArgRefsStack {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\PARAM_AND_ARG_REFS_STACK_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_PARAM_AND_ARG_REFS_STACK_H_

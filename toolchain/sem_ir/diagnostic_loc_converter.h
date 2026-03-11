@@ -94,4 +94,4 @@ class DiagnosticLocConverter {
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN\SEM_IR\DIAGNOSTIC_LOC_CONVERTER_H_
+#endif  // CARBON_TOOLCHAIN_SEM_IR_DIAGNOSTIC_LOC_CONVERTER_H_

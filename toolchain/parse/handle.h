@@ -15,4 +15,4 @@ namespace Carbon::Parse {
 
 }  // namespace Carbon::Parse
 
-#endif  // CARBON_TOOLCHAIN\PARSE\HANDLE_H_
+#endif  // CARBON_TOOLCHAIN_PARSE_HANDLE_H_

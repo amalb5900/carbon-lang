@@ -63,4 +63,4 @@ EmplaceByCalling(MakeFnT) -> EmplaceByCalling<MakeFnT>;
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON\EMPLACE_BY_CALLING_H_
+#endif  // CARBON_COMMON_EMPLACE_BY_CALLING_H_

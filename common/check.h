@@ -51,4 +51,4 @@ namespace Carbon {
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON\CHECK_H_
+#endif  // CARBON_COMMON_CHECK_H_

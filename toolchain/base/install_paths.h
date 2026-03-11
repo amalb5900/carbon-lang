@@ -188,4 +188,4 @@ class InstallPaths {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN\BASE\INSTALL_PATHS_H_
+#endif  // CARBON_TOOLCHAIN_BASE_INSTALL_PATHS_H_

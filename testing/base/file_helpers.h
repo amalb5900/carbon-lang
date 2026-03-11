@@ -38,4 +38,4 @@ auto WriteTestFile(llvm::StringRef name, llvm::StringRef contents)
 
 }  // namespace Carbon::Testing
 
-#endif  // CARBON_TESTING\BASE\FILE_HELPERS_H_
+#endif  // CARBON_TESTING_BASE_FILE_HELPERS_H_

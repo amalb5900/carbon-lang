@@ -313,4 +313,4 @@ class ClangResourceDirBuilder : public ClangRuntimesBuilderBase {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN\DRIVER\CLANG_RUNTIMES_H_
+#endif  // CARBON_TOOLCHAIN_DRIVER_CLANG_RUNTIMES_H_

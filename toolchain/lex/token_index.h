@@ -60,4 +60,4 @@ const TokenKind& TokenIndexForKind<K>::Kind = K;
 
 }  // namespace Carbon::Lex
 
-#endif  // CARBON_TOOLCHAIN\LEX\TOKEN_INDEX_H_
+#endif  // CARBON_TOOLCHAIN_LEX_TOKEN_INDEX_H_

@@ -33,4 +33,4 @@ extern const llvm::StringRef BuildTarget;
 
 }  // namespace Carbon::BuildData
 
-#endif  // CARBON_COMMON\BUILD_DATA_H_
+#endif  // CARBON_COMMON_BUILD_DATA_H_

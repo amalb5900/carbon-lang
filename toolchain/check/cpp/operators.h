@@ -33,4 +33,4 @@ auto IsCppConstructorOrNonMethodOperator(Context& context,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\CPP\OPERATORS_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_CPP_OPERATORS_H_

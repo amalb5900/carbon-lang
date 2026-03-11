@@ -198,4 +198,4 @@ auto AsTuple(T value) -> auto {
 
 }  // namespace Carbon::StructReflection
 
-#endif  // CARBON_COMMON\STRUCT_REFLECTION_H_
+#endif  // CARBON_COMMON_STRUCT_REFLECTION_H_

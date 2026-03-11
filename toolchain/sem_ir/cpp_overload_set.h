@@ -44,4 +44,4 @@ using CppOverloadSetStore =
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN\SEM_IR\CPP_OVERLOAD_SET_H_
+#endif  // CARBON_TOOLCHAIN_SEM_IR_CPP_OVERLOAD_SET_H_

@@ -73,4 +73,4 @@ class SortingConsumer : public Consumer {
 
 }  // namespace Carbon::Diagnostics
 
-#endif  // CARBON_TOOLCHAIN\DIAGNOSTICS\SORTING_CONSUMER_H_
+#endif  // CARBON_TOOLCHAIN_DIAGNOSTICS_SORTING_CONSUMER_H_

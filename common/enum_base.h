@@ -226,4 +226,4 @@ class EnumBase : public Printable<DerivedT> {
 // name.
 #define CARBON_ENUM_CLASS_NAME_STRING(Name) #Name,
 
-#endif  // CARBON_COMMON\ENUM_BASE_H_
+#endif  // CARBON_COMMON_ENUM_BASE_H_

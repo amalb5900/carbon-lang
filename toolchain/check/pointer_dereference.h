@@ -21,4 +21,4 @@ auto PerformPointerDereference(
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\POINTER_DEREFERENCE_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_POINTER_DEREFERENCE_H_

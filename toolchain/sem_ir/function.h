@@ -348,4 +348,4 @@ auto DecomposeVirtualFunction(const File& sem_ir, InstId fn_decl_id,
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN\SEM_IR\FUNCTION_H_
+#endif  // CARBON_TOOLCHAIN_SEM_IR_FUNCTION_H_

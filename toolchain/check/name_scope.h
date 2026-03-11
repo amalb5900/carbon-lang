@@ -25,4 +25,4 @@ auto TryAsClassScope(Context& context, SemIR::NameScopeId scope_id)
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\NAME_SCOPE_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_NAME_SCOPE_H_

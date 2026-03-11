@@ -92,4 +92,4 @@ class DeclIntroducerStateStack {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\DECL_INTRODUCER_STATE_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_DECL_INTRODUCER_STATE_H_

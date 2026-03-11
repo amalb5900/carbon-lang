@@ -38,4 +38,4 @@ using SpecificInterfaceStore =
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN\SEM_IR\SPECIFIC_INTERFACE_H_
+#endif  // CARBON_TOOLCHAIN_SEM_IR_SPECIFIC_INTERFACE_H_

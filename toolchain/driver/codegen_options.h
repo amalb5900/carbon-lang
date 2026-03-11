@@ -23,4 +23,4 @@ struct CodegenOptions {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN\DRIVER\CODEGEN_OPTIONS_H_
+#endif  // CARBON_TOOLCHAIN_DRIVER_CODEGEN_OPTIONS_H_

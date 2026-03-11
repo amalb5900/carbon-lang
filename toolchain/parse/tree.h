@@ -349,4 +349,4 @@ struct Tree::ConvertTo<NodeIdOneOf<T...>> {
 
 }  // namespace Carbon::Parse
 
-#endif  // CARBON_TOOLCHAIN\PARSE\TREE_H_
+#endif  // CARBON_TOOLCHAIN_PARSE_TREE_H_

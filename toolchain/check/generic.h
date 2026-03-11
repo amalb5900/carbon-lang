@@ -170,4 +170,4 @@ auto CopySpecificToGeneric(Context& context, SemIR::LocId loc_id,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\GENERIC_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_GENERIC_H_

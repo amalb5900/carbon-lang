@@ -94,4 +94,4 @@ class CompileSubcommand : public DriverSubcommand {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN\DRIVER\COMPILE_SUBCOMMAND_H_
+#endif  // CARBON_TOOLCHAIN_DRIVER_COMPILE_SUBCOMMAND_H_

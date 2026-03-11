@@ -1870,4 +1870,4 @@ inline auto Dir::Reader::Destroy() -> void {
 
 }  // namespace Carbon::Filesystem
 
-#endif  // CARBON_COMMON\FILESYSTEM_H_
+#endif  // CARBON_COMMON_FILESYSTEM_H_

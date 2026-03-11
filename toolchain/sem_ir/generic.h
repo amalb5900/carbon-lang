@@ -198,4 +198,4 @@ auto GetTypeOfInstInSpecific(const File& specific_ir, SpecificId specific_id,
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN\SEM_IR\GENERIC_H_
+#endif  // CARBON_TOOLCHAIN_SEM_IR_GENERIC_H_

@@ -35,4 +35,4 @@ class OutgoingMessages : public clang::clangd::LSPBinder::RawOutgoing {
 
 }  // namespace Carbon::LanguageServer
 
-#endif  // CARBON_TOOLCHAIN\LANGUAGE_SERVER\OUTGOING_MESSAGES_H_
+#endif  // CARBON_TOOLCHAIN_LANGUAGE_SERVER_OUTGOING_MESSAGES_H_

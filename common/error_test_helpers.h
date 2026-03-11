@@ -147,4 +147,4 @@ auto operator<<(std::ostream& out, const ErrorOr<T, ErrorT>& error_or)
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON\ERROR_TEST_HELPERS_H_
+#endif  // CARBON_COMMON_ERROR_TEST_HELPERS_H_

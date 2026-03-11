@@ -98,4 +98,4 @@ class Context {
 
 }  // namespace Carbon::LanguageServer
 
-#endif  // CARBON_TOOLCHAIN\LANGUAGE_SERVER\CONTEXT_H_
+#endif  // CARBON_TOOLCHAIN_LANGUAGE_SERVER_CONTEXT_H_

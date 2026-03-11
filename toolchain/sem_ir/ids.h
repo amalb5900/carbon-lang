@@ -1135,4 +1135,4 @@ struct AnyRawId : public AnyIdBase {
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN\SEM_IR\IDS_H_
+#endif  // CARBON_TOOLCHAIN_SEM_IR_IDS_H_

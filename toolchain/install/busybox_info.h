@@ -37,4 +37,4 @@ auto GetBusyboxInfo(const char* argv0) -> ErrorOr<BusyboxInfo>;
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN\INSTALL\BUSYBOX_INFO_H_
+#endif  // CARBON_TOOLCHAIN_INSTALL_BUSYBOX_INFO_H_

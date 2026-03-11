@@ -65,4 +65,4 @@ GrowingRange(const ContainerT&) -> GrowingRange<ContainerT>;
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON\GROWING_RANGE_H_
+#endif  // CARBON_COMMON_GROWING_RANGE_H_

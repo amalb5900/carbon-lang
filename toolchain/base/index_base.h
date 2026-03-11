@@ -152,4 +152,4 @@ class IndexIterator
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN\BASE\INDEX_BASE_H_
+#endif  // CARBON_TOOLCHAIN_BASE_INDEX_BASE_H_

@@ -48,4 +48,4 @@ auto HandleShutdown(
 
 }  // namespace Carbon::LanguageServer
 
-#endif  // CARBON_TOOLCHAIN\LANGUAGE_SERVER\HANDLE_H_
+#endif  // CARBON_TOOLCHAIN_LANGUAGE_SERVER_HANDLE_H_

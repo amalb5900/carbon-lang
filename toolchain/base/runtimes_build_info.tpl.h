@@ -46,4 +46,4 @@ inline constexpr llvm::StringLiteral LibunwindCopts[] = {LIBUNWIND_COPTS};
 
 }  // namespace Carbon::RuntimesBuildInfo
 
-#endif  // CARBON_TOOLCHAIN\BASE\RUNTIMES_BUILD_INFO_TPL_H_
+#endif  // CARBON_TOOLCHAIN_BASE_RUNTIMES_BUILD_INFO_TPL_H_

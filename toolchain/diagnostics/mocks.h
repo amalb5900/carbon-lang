@@ -73,4 +73,4 @@ auto PrintTo(Level level, std::ostream* os) -> void;
 
 }  // namespace Carbon::Diagnostics
 
-#endif  // CARBON_TOOLCHAIN\DIAGNOSTICS\MOCKS_H_
+#endif  // CARBON_TOOLCHAIN_DIAGNOSTICS_MOCKS_H_

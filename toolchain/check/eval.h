@@ -61,4 +61,4 @@ auto TryEvalBlockForSpecific(Context& context, SemIR::LocId loc_id,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\EVAL_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_EVAL_H_

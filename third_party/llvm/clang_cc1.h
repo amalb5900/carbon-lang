@@ -26,4 +26,4 @@ auto RunClangCC1(const InstallPaths& installation,
 
 }  // namespace Carbon
 
-#endif  // CARBON_THIRD_PARTY\LLVM\CLANG_CC1_H_
+#endif  // CARBON_THIRD_PARTY_LLVM_CLANG_CC1_H_

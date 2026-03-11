@@ -77,4 +77,4 @@ using CopyOnWriteStructTypeFieldsBlock =
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN\SEM_IR\COPY_ON_WRITE_BLOCK_H_
+#endif  // CARBON_TOOLCHAIN_SEM_IR_COPY_ON_WRITE_BLOCK_H_

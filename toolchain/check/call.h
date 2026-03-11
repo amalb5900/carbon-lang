@@ -30,4 +30,4 @@ auto PerformCall(Context& context, SemIR::LocId loc_id, SemIR::InstId callee_id,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\CALL_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_CALL_H_

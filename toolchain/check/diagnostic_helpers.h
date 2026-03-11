@@ -149,4 +149,4 @@ struct SpecificInterfaceIdAsRawType {
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\DIAGNOSTIC_HELPERS_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_DIAGNOSTIC_HELPERS_H_

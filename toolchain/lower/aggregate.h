@@ -33,4 +33,4 @@ auto EmitAggregateInitializer(FunctionContext& context,
 
 }  // namespace Carbon::Lower
 
-#endif  // CARBON_TOOLCHAIN\LOWER\AGGREGATE_H_
+#endif  // CARBON_TOOLCHAIN_LOWER_AGGREGATE_H_

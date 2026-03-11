@@ -41,4 +41,4 @@ auto FindStorageArgForInitializer(const File& sem_ir, InstId init_id,
 
 }  // namespace Carbon::SemIR
 
-#endif  // CARBON_TOOLCHAIN\SEM_IR\EXPR_INFO_H_
+#endif  // CARBON_TOOLCHAIN_SEM_IR_EXPR_INFO_H_

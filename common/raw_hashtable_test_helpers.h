@@ -151,4 +151,4 @@ class IndexKeyContext : public TranslatingKeyContext<IndexKeyContext<T>> {
 
 }  // namespace Carbon::RawHashtable
 
-#endif  // CARBON_COMMON\RAW_HASHTABLE_TEST_HELPERS_H_
+#endif  // CARBON_COMMON_RAW_HASHTABLE_TEST_HELPERS_H_

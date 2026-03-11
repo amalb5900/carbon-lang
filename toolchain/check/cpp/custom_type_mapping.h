@@ -26,4 +26,4 @@ auto GetCustomCppTypeMapping(const clang::CXXRecordDecl* record_decl)
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\CPP\CUSTOM_TYPE_MAPPING_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_CPP_CUSTOM_TYPE_MAPPING_H_

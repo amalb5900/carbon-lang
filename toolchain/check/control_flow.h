@@ -134,4 +134,4 @@ auto AddReturnCleanupBlockWithExpr(Context& context, LocT loc,
 
 }  // namespace Carbon::Check
 
-#endif  // CARBON_TOOLCHAIN\CHECK\CONTROL_FLOW_H_
+#endif  // CARBON_TOOLCHAIN_CHECK_CONTROL_FLOW_H_

@@ -433,4 +433,4 @@ inline constexpr IntStore::APIntId IntStore::APIntId::None(
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN\BASE\INT_H_
+#endif  // CARBON_TOOLCHAIN_BASE_INT_H_

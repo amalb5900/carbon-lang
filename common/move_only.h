@@ -25,4 +25,4 @@ struct MoveOnly {
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON\MOVE_ONLY_H_
+#endif  // CARBON_COMMON_MOVE_ONLY_H_

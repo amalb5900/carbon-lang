@@ -125,4 +125,4 @@ class TypeEnum : public Printable<TypeEnum<Types...>> {
 
 }  // namespace Carbon
 
-#endif  // CARBON_COMMON\TYPE_ENUM_H_
+#endif  // CARBON_COMMON_TYPE_ENUM_H_

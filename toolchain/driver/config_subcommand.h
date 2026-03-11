@@ -41,4 +41,4 @@ class ConfigSubcommand : public DriverSubcommand {
 
 }  // namespace Carbon
 
-#endif  // CARBON_TOOLCHAIN\DRIVER\CONFIG_SUBCOMMAND_H_
+#endif  // CARBON_TOOLCHAIN_DRIVER_CONFIG_SUBCOMMAND_H_
