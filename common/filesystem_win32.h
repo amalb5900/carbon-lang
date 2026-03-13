@@ -306,7 +306,6 @@ inline static int _carbon_openat_impl(int dfd, const wchar_t* path, int flags, i
         OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, nullptr);
     if (h == INVALID_HANDLE_VALUE) {
       DWORD err = GetLastError();
-      fprintf(stderr, "[openat] dir fallback FAILED err=%lu\n", err);
       errno = ENOENT; return -1;
     }
     return _carbon_dir_add(h);

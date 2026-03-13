@@ -241,11 +241,7 @@ cc_test(
 cc_library(
     name = "filesystem",
     srcs = ["filesystem.cpp"],
-    hdrs = [
-        "filesystem.h",
-        "filesystem_win32.h",
-        "dirent.h",
-    ],
+    hdrs = ["filesystem.h"],
     deps = [
         ":build_data",
         ":check",
