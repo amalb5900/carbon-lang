@@ -1,6 +1,7 @@
 // Part of the Carbon Language project, under the Apache License v2.0 with LLVM
 // Exceptions. See /LICENSE for license information.
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+// Windows port fix: stem() check v2
 
 #include "toolchain/install/busybox_info.h"
 
@@ -15,7 +16,7 @@ namespace Carbon {
 // The mode is set to the initial filename used for `argv[0]`.
 static auto GetMode(const std::filesystem::path& argv0)
     -> std::optional<std::string> {
-  std::string filename = argv0.filename().string();
+  std::string filename = argv0.stem().string();
   if (filename != "carbon" && filename != "carbon-busybox") {
     return filename;
   }
@@ -68,7 +69,11 @@ auto GetBusyboxInfo(const char* argv0) -> ErrorOr<BusyboxInfo> {
 
   // Now search through any symlinks to locate the installed busybox binary.
   while (true) {
-    if (info.bin_path.filename() == "carbon-busybox") {
+    if (info.bin_path.stem() == "carbon-busybox" || info.bin_path.stem() == "carbon") {
+      // On Windows in bazel-bin, return directly.
+#ifdef _WIN32
+      return info;
+#endif
       // Check for bazel structure. For example, this makes work:
       //   /bin/sh -c "exec -a carbon ./bazel-bin/toolchain/carbon"
       //   /bin/sh -c "exec -a llvm-symbolizer ./bazel-bin/toolchain/carbon"
@@ -110,6 +115,10 @@ auto GetBusyboxInfo(const char* argv0) -> ErrorOr<BusyboxInfo> {
       parent_path = parent_path.parent_path();
     }
     if (parent_path.filename() == "bin") {
+#ifdef _WIN32
+      // On Windows, binary is already in the install tree - return directly.
+      return info;
+#endif
       // Note that we use a specialized approach to walking up rather than
       // always appending `../` components. While largely equivalent, this helps
       // keep paths shorter and avoids redundant work. We also don't expect to
@@ -141,7 +150,7 @@ auto GetBusyboxInfo(const char* argv0) -> ErrorOr<BusyboxInfo> {
       // On Windows, the binary may be a regular file named carbon-busybox.exe
       // rather than a symlink. Use the file directly as the install root.
       auto stem = info.bin_path.stem().string();
-      if (stem == "carbon-busybox") {
+      if (stem == "carbon-busybox" || stem == "carbon") {
         return info;
       }
 #endif

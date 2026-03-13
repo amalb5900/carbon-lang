@@ -1,3 +1,4 @@
+// Windows port fix applied
 // Part of the Carbon Language project, under the Apache License v2.0 with LLVM
 // Exceptions. See /LICENSE for license information.
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
@@ -362,11 +363,20 @@ auto DirRef::OpenDir(const std::filesystem::path& path,
   // Open this path as a directory. Note that this has to succeed, and when we
   // created the directory we require the last component to not be a symlink in
   // case it was _replaced_ with a symlink while running.
+#ifdef _WIN32
+#ifdef openat
+#undef openat
+#endif
+  int result_fd =
+      _carbon_openat_impl(dfd_, path.wstring().c_str(), static_cast<int>(open_flags), 0);
+#else
   int result_fd =
       openat(dfd_, path.c_str(), static_cast<int>(open_flags));
+#endif
   if (result_fd == -1) {
     // No need for `EINTR` handling here as if this is a FIFO it would be an
     // error with `O_DIRECTORY`.
+
     return PathError(
         errno,
         "Calling `openat` on '{0}' relative to '{1}' during DirRef::OpenDir",
@@ -423,7 +433,7 @@ auto DirRef::OpenDir(const std::filesystem::path& path,
     }
   }
 
-  return result;
+  return std::move(result);
 }
 
 auto DirRef::ReadFileToString(const std::filesystem::path& path)
@@ -791,3 +801,5 @@ auto MakeTmpDirWithPrefix(std::filesystem::path prefix)
 }
 
 }  // namespace Carbon::Filesystem
+
+

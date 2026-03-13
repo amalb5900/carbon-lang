@@ -1,3 +1,5 @@
+// Windows port fix v3
+// Windows port fix v2
 // Part of the Carbon Language project, under the Apache License v2.0 with LLVM
 // Exceptions. See /LICENSE for license information.
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
@@ -226,11 +228,20 @@ static inline std::wstring _carbon_resolve_path(int dfd, const wchar_t* path) {
       c = L'\\';
     }
   }
-  // If absolute path or AT_FDCWD, use as-is
+  // If absolute path, use as-is
   bool is_abs = (norm.size() > 1 && norm[1] == L':') ||
                 (!norm.empty() && norm[0] == L'\\');
-  if (dfd == -100 || is_abs) {
+  if (is_abs) {
     return norm;
+  }
+  // AT_FDCWD with relative path - prepend CWD
+  if (dfd == -100) {
+    std::vector<wchar_t> cwd_vec(32768, L'\0');
+    GetCurrentDirectoryW(32768, cwd_vec.data());
+    std::wstring full_cwd(cwd_vec.data());
+    if (!full_cwd.empty() && full_cwd.back() != L'\\')
+      full_cwd += L'\\';
+    return full_cwd + norm;
   }
   // Resolve relative to dfd
   HANDLE h = _carbon_is_dir_fd(dfd) ? _carbon_dir_get(dfd)
@@ -257,7 +268,7 @@ static inline std::wstring _carbon_resolve_path(int dfd, const wchar_t* path) {
   full += norm;
   return full;
 }
-inline static int openat(int dfd, const wchar_t* path, int flags, int mode) {
+inline static int _carbon_openat_impl(int dfd, const wchar_t* path, int flags, int mode) {
   std::wstring full = _carbon_resolve_path(dfd, path);
   if (flags & O_DIRECTORY) {
     // If O_CREAT is set, try to create the directory first using resolved full
@@ -266,22 +277,50 @@ inline static int openat(int dfd, const wchar_t* path, int flags, int mode) {
       _wmkdir(full.c_str());  // ignore error - may already exist, full path
                               // already resolved
     }
+    // Ensure trailing backslash for root drives (e.g. D:\\)
+    if (full.size() == 2 && full[1] == L':') {
+      full += L'\\';
+    }
     HANDLE h = CreateFileW(
         full.c_str(), GENERIC_READ,
         FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr,
         OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, nullptr);
     if (h == INVALID_HANDLE_VALUE) {
+      DWORD err = GetLastError();
+      fprintf(stderr, "[openat] CreateFileW FAILED err=%lu\n", err);
       errno = ENOENT;
       return -1;
     }
     int fd = _carbon_dir_add(h);
     return fd;
   }
+  // On Windows, if path is a directory, use CreateFileW even without O_DIRECTORY
+  // Strip trailing backslash for GetFileAttributesW
+  std::wstring full_notrail = full;
+  if (full_notrail.size() > 3 && full_notrail.back() == L'\\')
+    full_notrail.pop_back();
+  DWORD attrs = GetFileAttributesW(full_notrail.c_str());
+  if (attrs != INVALID_FILE_ATTRIBUTES && (attrs & FILE_ATTRIBUTE_DIRECTORY)) {
+    HANDLE h = CreateFileW(full.c_str(), GENERIC_READ,
+        FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr,
+        OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, nullptr);
+    if (h == INVALID_HANDLE_VALUE) {
+      DWORD err = GetLastError();
+      fprintf(stderr, "[openat] dir fallback FAILED err=%lu\n", err);
+      errno = ENOENT; return -1;
+    }
+    return _carbon_dir_add(h);
+  }
   return _wopen(full.c_str(), flags & ~O_DIRECTORY, mode);
 }
 inline static int openat(int dfd, const wchar_t* path, int flags) {
-  return openat(dfd, path, flags, 0);
+  return _carbon_openat_impl(dfd, path, flags, 0);
 }
+// Override LLVM unistd.h macro
+#ifdef openat
+#undef openat
+#endif
+#define openat(fd, path, flags, ...) _carbon_openat_impl(fd, (const wchar_t*)(path), flags, ##__VA_ARGS__)
 
 // readlinkat
 #ifdef readlinkat
@@ -448,6 +487,16 @@ static inline int faccessat(int dfd, const wchar_t* path, int mode, int) {
 #undef fstat
 #endif
 static inline int fstat(int fd, struct _stat64* buf) {
+  if (_carbon_is_dir_fd(fd)) {
+    HANDLE h = _carbon_dir_get(fd);
+    if (h == INVALID_HANDLE_VALUE) { errno = EBADF; return -1; }
+    BY_HANDLE_FILE_INFORMATION info = {};
+    if (!GetFileInformationByHandle(h, &info)) { errno = EBADF; return -1; }
+    memset(buf, 0, sizeof(*buf));
+    buf->st_mode = _S_IFDIR | 0555;
+    buf->st_nlink = 1;
+    return 0;
+  }
   return _fstat64(fd, buf);
 }
 #ifdef fstatat
@@ -701,3 +750,6 @@ inline static int renameat(int, const wchar_t* oldp, int, const wchar_t* newp) {
 #endif  // _WIN32
 
 #endif  // CARBON_COMMON_FILESYSTEM_WIN32_H_
+
+
+
