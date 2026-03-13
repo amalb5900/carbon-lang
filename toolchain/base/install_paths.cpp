@@ -163,7 +163,9 @@ auto InstallPaths::MakeFromFile(std::filesystem::path file_path)
         break;
       }
       auto parent = search.parent_path();
-      if (parent == search) break;
+      if (parent == search) {
+        break;
+      }
       search = parent;
     }
   }

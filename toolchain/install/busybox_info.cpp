@@ -69,7 +69,8 @@ auto GetBusyboxInfo(const char* argv0) -> ErrorOr<BusyboxInfo> {
 
   // Now search through any symlinks to locate the installed busybox binary.
   while (true) {
-    if (info.bin_path.stem() == "carbon-busybox" || info.bin_path.stem() == "carbon") {
+    if (info.bin_path.stem() == "carbon-busybox" ||
+        info.bin_path.stem() == "carbon") {
       // On Windows in bazel-bin, return directly.
 #ifdef _WIN32
       return info;
