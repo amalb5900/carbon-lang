@@ -241,7 +241,10 @@ cc_test(
 cc_library(
     name = "filesystem",
     srcs = ["filesystem.cpp"],
-    hdrs = ["filesystem.h"],
+    hdrs = ["filesystem.h"] + select({
+        "@platforms//os:windows": ["filesystem_win32.h"],
+        "//conditions:default": [],
+    }),
     deps = [
         ":build_data",
         ":check",

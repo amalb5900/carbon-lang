@@ -2,8 +2,8 @@
 // Exceptions. See /LICENSE for license information.
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 
-#ifndef CARBON_COMMON\FILESYSTEM_WIN32_H_
-#define CARBON_COMMON\FILESYSTEM_WIN32_H_
+#ifndef CARBON_COMMON_FILESYSTEM_WIN32_H_
+#define CARBON_COMMON_FILESYSTEM_WIN32_H_
 
 #ifdef _WIN32
 
@@ -307,7 +307,6 @@ inline static int _carbon_openat_impl(int dfd, const wchar_t* path, int flags,
         FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr,
         OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, nullptr);
     if (h == INVALID_HANDLE_VALUE) {
-      DWORD err = GetLastError();
       errno = ENOENT;
       return -1;
     }
@@ -758,4 +757,4 @@ inline static int renameat(int, const wchar_t* oldp, int, const wchar_t* newp) {
 
 #endif  // _WIN32
 
-#endif  // CARBON_COMMON\FILESYSTEM_WIN32_H_
+#endif  // CARBON_COMMON_FILESYSTEM_WIN32_H_
