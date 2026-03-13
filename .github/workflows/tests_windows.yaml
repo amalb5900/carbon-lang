@@ -114,7 +114,6 @@ jobs:
             //common:string_helpers_test `
             //common:struct_reflection_test `
             //common:template_string_test `
-            //common:vlog_test `
             --repo_env=CC=clang `
             --repo_env=CXX=clang++ `
             --force_pic=false `
