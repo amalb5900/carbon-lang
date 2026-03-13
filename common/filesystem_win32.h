@@ -1,11 +1,9 @@
-// Windows port fix v3
-// Windows port fix v2
 // Part of the Carbon Language project, under the Apache License v2.0 with LLVM
 // Exceptions. See /LICENSE for license information.
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 
-#ifndef CARBON_COMMON_FILESYSTEM_WIN32_H_
-#define CARBON_COMMON_FILESYSTEM_WIN32_H_
+#ifndef CARBON_COMMON\FILESYSTEM_WIN32_H_
+#define CARBON_COMMON\FILESYSTEM_WIN32_H_
 
 #ifdef _WIN32
 
@@ -760,4 +758,4 @@ inline static int renameat(int, const wchar_t* oldp, int, const wchar_t* newp) {
 
 #endif  // _WIN32
 
-#endif  // CARBON_COMMON_FILESYSTEM_WIN32_H_
+#endif  // CARBON_COMMON\FILESYSTEM_WIN32_H_
