@@ -1751,7 +1751,7 @@ static auto TryResolveTypedInst(ImportRefResolver& resolver,
   auto entity_name_id = resolver.local_entity_names().Add(
       {.name_id = name_id,
        .parent_scope_id = parent_scope_id,
-       .bind_index_value = import_entity_name.bind_index().index,
+       .bind_index_value = static_cast<uint32_t>(import_entity_name.bind_index().index),
        .is_template = import_entity_name.is_template});
   return ResolveResult::Unique<BindingPatternT>(
       resolver, import_inst_id,

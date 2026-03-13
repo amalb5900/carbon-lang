@@ -40,7 +40,7 @@ struct EntityName : public Printable<EntityName> {
   // `None` otherwise. This is also `None` for a `.Self` symbolic binding,
   // because such a binding is not assigned an index.
   auto bind_index() const -> CompileTimeBindIndex {
-    return CompileTimeBindIndex(bind_index_value);
+    return CompileTimeBindIndex(static_cast<int32_t>(bind_index_value << 2) >> 2);
   }
 
   // The name.
@@ -53,7 +53,7 @@ struct EntityName : public Printable<EntityName> {
   // them for other kinds of `EntityName`.
 
   // The bind_index() value, unwrapped so it can be stored in a bit-field.
-  int32_t bind_index_value : 30 = CompileTimeBindIndex::None.index;
+  uint32_t bind_index_value : 30 = static_cast<uint32_t>(CompileTimeBindIndex::None.index) & 0x3FFFFFFF;
   // Whether this binding is a template parameter.
 #ifdef _WIN32
   unsigned is_template : 1 = false;
@@ -86,7 +86,7 @@ struct EntityNameStore
                               bool is_unused) -> EntityNameId {
     EntityName name = {.name_id = name_id,
                        .parent_scope_id = parent_scope_id,
-                       .bind_index_value = bind_index.index,
+                       .bind_index_value = static_cast<uint32_t>(bind_index.index),
                        .is_template = is_template,
                        .is_unused = is_unused};
     CARBON_CHECK(name.bind_index_value == bind_index.index,
