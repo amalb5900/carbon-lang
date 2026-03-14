@@ -49,9 +49,6 @@ struct CharLiteralValue {
 // two separate vectors and their growth. Making this profitable would likely
 // at least require a highly specialized single vector that manages the growth
 // once and then provides separate storage areas for the two arrays.
-#ifdef _WIN32
-#pragma pack(push, 1)
-#endif
 class TokenInfo {
  public:
   // The kind for this token.
@@ -155,19 +152,19 @@ class TokenInfo {
   // to access the payload, as it works to track uninitialized memory
   // bit-for-bit specifically to handle complex cases like bitfields.
   TokenInfo(TokenKind kind, bool has_leading_space, int32_t byte_offset)
-      : byte_offset_(byte_offset),
-        kind_(kind),
-        has_leading_space_(has_leading_space) {}
+      : kind_(kind),
+        has_leading_space_(has_leading_space),
+        byte_offset_(byte_offset) {}
 
   // Constructor for a TokenKind that carries a payload.
   //
   // Only used by the lexer which enforces the correct kind and payload types.
   TokenInfo(TokenKind kind, bool has_leading_space, int payload,
             int32_t byte_offset)
-      : byte_offset_(byte_offset),
-        kind_(kind),
+      : kind_(kind),
         has_leading_space_(has_leading_space),
-        token_payload_(payload) {}
+        token_payload_(payload),
+        byte_offset_(byte_offset) {}
 
   // A bitfield that encodes the token's kind, the leading space flag, and the
   // remaining bits in a payload. These are encoded together as a bitfield for
@@ -179,24 +176,18 @@ class TokenInfo {
   // token index. Stores to this field may overflow, but we produce an error
   // in `Lexer::Finalize` if the file has more than `TokenIndex::Max` tokens,
   // so this value never overflows if lexing succeeds.
-  int32_t byte_offset_;
   TokenKind kind_;
   static_assert(sizeof(kind_) == 1, "TokenKind must pack to 8 bits");
-#ifdef _WIN32
-  unsigned has_leading_space_ : 1;
-#else
   bool has_leading_space_ : 1;
-#endif
   unsigned token_payload_ : PayloadBits;
+
+  // Separate storage for the byte offset, this is hot while lexing but then
+  // generally cold.
+  int32_t byte_offset_;
 };
 
-#ifdef _WIN32
-#pragma pack(pop)
-#endif
-#ifndef _WIN32
 static_assert(sizeof(TokenInfo) == 8,
               "Expected `TokenInfo` to pack to an 8-byte structure.");
-#endif
 
 }  // namespace Carbon::Lex
 

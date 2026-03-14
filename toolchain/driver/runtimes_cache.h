@@ -246,19 +246,14 @@ class Runtimes::Cache {
       : vlog_stream_(arg.vlog_stream_),
         cache_key_(std::move(arg.cache_key_)),
         path_(std::move(arg.path_)),
-        dir_owner_(std::exchange(arg.dir_owner_, {})) {
-    if (auto* d = std::get_if<Filesystem::Dir>(&dir_owner_)) {
-      dir_ = *d;
-    }
-  }
+        dir_owner_(std::exchange(arg.dir_owner_, {})),
+        dir_(arg.dir_) {}
   auto operator=(Cache&& arg) noexcept -> Cache& {
     vlog_stream_ = arg.vlog_stream_;
     cache_key_ = std::move(arg.cache_key_);
     path_ = std::move(arg.path_);
     dir_owner_ = std::exchange(arg.dir_owner_, {});
-    if (auto* d = std::get_if<Filesystem::Dir>(&dir_owner_)) {
-      dir_ = *d;
-    }
+    dir_ = arg.dir_;
     return *this;
   }
 
@@ -412,7 +407,7 @@ class Runtimes::Builder : public Printable<Builder> {
   auto Commit() && -> ErrorOr<std::filesystem::path>;
 
   auto Print(llvm::raw_ostream& out) const -> void {
-    out << "Runtimes::Builder{.path = '" << path().string() << "'}";
+    out << "Runtimes::Builder{.path = '" << path() << "'}";
   }
 
  private:

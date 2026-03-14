@@ -72,7 +72,7 @@ auto BuildRuntimesSubcommand::Run(DriverEnv& driver_env) -> DriverResult {
     return {.success = false};
   }
 
-  llvm::outs() << "Built runtimes: " << run_result->string() << "\n";
+  llvm::outs() << "Built runtimes: " << *run_result << "\n";
   return {.success = true};
 }
 

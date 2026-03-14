@@ -231,8 +231,7 @@ auto Driver::RunCommand(llvm::ArrayRef<llvm::StringRef> args) -> DriverResult {
     out << "Carbon version: " << Version::String << "\n";
   });
 
-  auto options_ptr = std::make_unique<Options>();
-  Options& options = *options_ptr;
+  Options options;
   DriverEnv env(fs_, installation_, input_stream_, output_stream_,
                 error_stream_, fuzzing_, enable_leaking_);
 
