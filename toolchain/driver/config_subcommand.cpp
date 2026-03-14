@@ -1,4 +1,4 @@
-// Part of the Carbon Language project, under the Apache License v2.0 with LLVM
+﻿// Part of the Carbon Language project, under the Apache License v2.0 with LLVM
 // Exceptions. See /LICENSE for license information.
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 
@@ -186,10 +186,11 @@ auto ConfigSubcommand::Run(DriverEnv& driver_env) -> DriverResult {
   // Start with basic data available from the driver or global constants.
   llvm::SmallVector<ConfigDataEntry> data = {
       {.key = "CLANG_RESOURCE_DIR",
-       .value = driver_env.installation->clang_resource_path()},
-      {.key = "INSTALL_ROOT", .value = driver_env.installation->root()},
+       .value = driver_env.installation->clang_resource_path().string()},
+      {.key = "INSTALL_ROOT",
+       .value = driver_env.installation->root().string()},
       {.key = "LLVM_BINDIR",
-       .value = driver_env.installation->llvm_install_bin()},
+       .value = driver_env.installation->llvm_install_bin().string()},
       {.key = "VERSION", .value = Version::String.str()},
   };
 

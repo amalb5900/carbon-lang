@@ -1,4 +1,4 @@
-// Part of the Carbon Language project, under the Apache License v2.0 with LLVM
+﻿// Part of the Carbon Language project, under the Apache License v2.0 with LLVM
 // Exceptions. See /LICENSE for license information.
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 
@@ -72,7 +72,7 @@ auto BuildRuntimesSubcommand::Run(DriverEnv& driver_env) -> DriverResult {
     return {.success = false};
   }
 
-  llvm::outs() << "Built runtimes: " << *run_result << "\n";
+  llvm::outs() << "Built runtimes: " << run_result->string() << "\n";
   return {.success = true};
 }
 

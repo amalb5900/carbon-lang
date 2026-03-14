@@ -1,4 +1,4 @@
-// Part of the Carbon Language project, under the Apache License v2.0 with LLVM
+﻿// Part of the Carbon Language project, under the Apache License v2.0 with LLVM
 // Exceptions. See /LICENSE for license information.
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 
@@ -171,7 +171,7 @@ auto ClangRunner::RunWithPrebuiltRuntimes(llvm::ArrayRef<llvm::StringRef> args,
                           prebuilt_runtimes.Get(Runtimes::LibUnwind));
   CARBON_ASSIGN_OR_RETURN(std::filesystem::path libcxx_path,
                           prebuilt_runtimes.Get(Runtimes::Libcxx));
-  return RunInternal(args, target, prebuilt_resource_dir_path.native(),
+  return RunInternal(args, target, prebuilt_resource_dir_path.string(),
                      std::move(libunwind_path), std::move(libcxx_path),
                      /*link_runtime_libs=*/true, enable_leaking);
 }
@@ -225,7 +225,7 @@ auto ClangRunner::Run(llvm::ArrayRef<llvm::StringRef> args,
   // to indicate whether `clang` itself succeeded, not whether the runner was
   // able to run it. As a consequence, even a `false` here is a non-`Error`
   // return.
-  return RunInternal(args, target, resource_dir_path.native(),
+  return RunInternal(args, target, resource_dir_path.string(),
                      std::move(libunwind_path), std::move(libcxx_path),
                      /*link_runtime_libs=*/true, enable_leaking);
 }
@@ -252,7 +252,7 @@ auto ClangRunner::RunInternal(
   // we don't synthesize any default arguments there.
   if (!args.empty() && args[0].starts_with("-cc1")) {
     llvm::SmallVector<const char*, 64> cstr_args =
-        BuildCStrArgs(clang_path_.native(), args, alloc);
+        BuildCStrArgs(clang_path_.string(), args, alloc);
     if (args[0] == "-cc1") {
       CARBON_VLOG("Dispatching `-cc1` command line...");
       int exit_code =
@@ -296,11 +296,12 @@ auto ClangRunner::RunInternal(
     // to use command line flags to force static runtime linking to occur.
     if (libunwind_path) {
       prefix_args.push_back(
-          llvm::formatv("-L{0}/lib", *std::move(libunwind_path)).str());
+          llvm::formatv("-L{0}/lib", std::move(*libunwind_path).string())
+              .str());
     }
     if (libcxx_path) {
       prefix_args.push_back(
-          llvm::formatv("-L{0}/lib", std::move(libcxx_path)).str());
+          llvm::formatv("-L{0}/lib", std::move(*libcxx_path).string()).str());
     }
   } else {
     // If we are suppressing the linking of default libs, ensure we didn't get a
@@ -325,11 +326,11 @@ auto ClangRunner::RunInternal(
 
   // Rebuild the args as C-string args.
   llvm::SmallVector<const char*, 64> cstr_args =
-      BuildCStrArgs(clang_path_.native(), prefix_args, args, alloc);
+      BuildCStrArgs(clang_path_.string(), prefix_args, args, alloc);
 
   // Expand any response files in the arguments.
   bool is_clang_cl_mode = clang::driver::IsClangCL(
-      clang::driver::getDriverMode(clang_path_.native(), cstr_args));
+      clang::driver::getDriverMode(clang_path_.string(), cstr_args));
   if (llvm::Error error = clang::driver::expandResponseFiles(
           cstr_args, is_clang_cl_mode, alloc, fs_.get())) {
     return Error(llvm::toString(std::move(error)));
@@ -360,7 +361,7 @@ auto ClangRunner::RunInternal(
 
   // Note that we configure the driver's *default* target here, not the expected
   // target as that will be parsed out of the command line below.
-  clang::driver::Driver driver(clang_path_.native(),
+  clang::driver::Driver driver(clang_path_.string(),
                                llvm::sys::getDefaultTargetTriple(), diagnostics,
                                "clang LLVM compiler", fs_);
 
@@ -383,14 +384,14 @@ auto ClangRunner::RunInternal(
   // here, otherwise use the installation's resource directory.
   driver.ResourceDir = target_resource_dir_path
                            ? target_resource_dir_path->str()
-                           : installation_->clang_resource_path().native();
+                           : installation_->clang_resource_path().string();
 
   // Configure the install directory to find other tools and data files.
   //
   // We directly override the detected directory as we use a synthetic path
   // above. This makes it appear that our binary was in the installed binaries
   // directory, and allows finding tools relative to it.
-  driver.Dir = installation_->llvm_install_bin();
+  driver.Dir = installation_->llvm_install_bin().string();
   CARBON_VLOG("Setting bin directory to: {0}\n", driver.Dir);
 
   // When there's only one command being run, this will run it in-process.

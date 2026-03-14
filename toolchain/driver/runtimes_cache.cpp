@@ -1,4 +1,4 @@
-// Part of the Carbon Language project, under the Apache License v2.0 with LLVM
+﻿// Part of the Carbon Language project, under the Apache License v2.0 with LLVM
 // Exceptions. See /LICENSE for license information.
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 
@@ -48,8 +48,8 @@ auto Runtimes::Destroy() -> void {
   auto close_result = std::move(lock_file_).Close();
   if (!close_result.ok()) {
     // Log and continue on close errors.
-    CARBON_VLOG("Error closing lock file for runtimes '{0}': {1}", base_path_,
-                close_result.error());
+    CARBON_VLOG("Error closing lock file for runtimes '{0}': {1}",
+                base_path_.string(), close_result.error());
   }
 }
 
@@ -92,7 +92,7 @@ auto Runtimes::BuildImpl(Component component, Filesystem::Duration deadline,
           llvm::formatv(LockFileFormat, component_path).str(),
           Filesystem::OpenAlways, /*creation_mode=*/0700));
   CARBON_VLOG("PID {0} locking cache path: {1}\n", getpid(),
-              base_path_ / component_path);
+              (base_path_ / component_path).string());
   Filesystem::FileLock flock;
   auto flock_result = lock_file.TryLock(Filesystem::FileLock::Exclusive,
                                         deadline, poll_interval);
@@ -107,7 +107,7 @@ auto Runtimes::BuildImpl(Component component, Filesystem::Duration deadline,
     // continue.
     return std::move(flock_result).error();
   } else {
-    CARBON_VLOG("Unable to lock cache path, held by: {1}\n",
+    CARBON_VLOG("Unable to lock cache path.string(), held by: {1}\n",
                 *lock_file.ReadFileToString());
     (void)std::move(lock_file).Close();
   }
@@ -141,7 +141,7 @@ auto Runtimes::Cache::FindXdgCachePath()
       xdg_cache_home != nullptr) {
     std::filesystem::path path = xdg_cache_home;
     if (path.is_absolute()) {
-      CARBON_VLOG("Using '$XDG_CACHE_HOME' cache: {0}", path);
+      CARBON_VLOG("Using '$XDG_CACHE_HOME' cache: {0}", path.string());
       return path;
     }
   }
@@ -158,7 +158,7 @@ auto Runtimes::Cache::FindXdgCachePath()
     return std::nullopt;
   }
   path /= ".cache";
-  CARBON_VLOG("Using '$HOME/.cache' cache: {0}", path);
+  CARBON_VLOG("Using '$HOME/.cache' cache: {0}", path.string());
   return path;
 }
 
@@ -166,7 +166,7 @@ auto Runtimes::Cache::InitTmpSystemCache() -> ErrorOr<Success> {
   CARBON_ASSIGN_OR_RETURN(dir_owner_, Filesystem::MakeTmpDir());
   path_ = std::get<Filesystem::RemovingDir>(dir_owner_).path();
   dir_ = std::get<Filesystem::RemovingDir>(dir_owner_);
-  CARBON_VLOG("Using temporary cache: {0}", path_);
+  CARBON_VLOG("Using temporary cache: {0}", path_.string());
   return Success();
 }
 
@@ -217,7 +217,7 @@ auto Runtimes::Cache::InitSystemCache(const InstallPaths& install)
     return Error(llvm::formatv(
         "Found runtimes cache path '{0}' with excessive permissions ({1}) "
         "or an invalid owning UID ({2})",
-        path_, dir_stat.permissions(), dir_stat.unix_uid()));
+        path_.string(), dir_stat.permissions(), dir_stat.unix_uid()));
   }
 
   return Success();
@@ -240,7 +240,7 @@ auto Runtimes::Cache::InitCachePath(const InstallPaths& install,
   CARBON_ASSIGN_OR_RETURN(dir_owner_, Filesystem::Cwd().OpenDir(cache_path));
   dir_ = std::get<Filesystem::Dir>(dir_owner_);
   path_ = std::move(cache_path);
-  CARBON_VLOG("Using custom cache: {0}", path_);
+  CARBON_VLOG("Using custom cache: {0}", path_.string());
   return Success();
 }
 
@@ -331,11 +331,11 @@ auto Runtimes::Cache::PruneStaleRuntimes(
 
   // Directly attempt to remove non-directory and bad directory entries.
   for (const auto& name : non_dir_entries) {
-    CARBON_VLOG("Unlinking non-directory entry '{0}'", name);
+    CARBON_VLOG("Unlinking non-directory entry '{0}'", name.string());
     auto result = dir_.Unlink(name);
     if (!result.ok()) {
-      CARBON_VLOG("Error unlinking non-directory entry '{0}': {1}", name,
-                  result.error());
+      CARBON_VLOG("Error unlinking non-directory entry '{0}': {1}",
+                  name.string(), result.error());
     }
   }
 
@@ -349,11 +349,11 @@ auto Runtimes::Cache::PruneStaleRuntimes(
   auto rm_entry = [&](const std::filesystem::path& entry_name) {
     // Note that we don't propagate errors here because we want to prune as much
     // as possible. We do log them.
-    CARBON_VLOG("Removing cache entry '{0}'", entry_name);
+    CARBON_VLOG("Removing cache entry '{0}'", entry_name.string());
     auto rm_result = dir_.Rmtree(entry_name);
     if (!rm_result.ok() && !rm_result.error().no_entity()) {
-      CARBON_VLOG("Unable to remove old runtimes '{0}': {1}", entry_name,
-                  rm_result.error());
+      CARBON_VLOG("Unable to remove old runtimes '{0}': {1}",
+                  entry_name.string(), rm_result.error());
       return false;
     }
     return true;
@@ -381,7 +381,7 @@ auto Runtimes::Cache::PruneStaleRuntimes(
       return rm_entry(name);
     }
 
-    CARBON_VLOG("Attempting to lock cache entry '{0}'", name);
+    CARBON_VLOG("Attempting to lock cache entry '{0}'", name.string());
     auto lock_file_open_result =
         dir_.OpenReadOnly(name / ".lock", Filesystem::OpenAlways);
     if (!lock_file_open_result.ok()) {
@@ -394,8 +394,8 @@ auto Runtimes::Cache::PruneStaleRuntimes(
       }
 
       // For other errors, assume locked.
-      CARBON_VLOG("Error opening lock file for cache entry '{0}': {1}", name,
-                  lock_file_open_result.error());
+      CARBON_VLOG("Error opening lock file for cache entry '{0}': {1}",
+                  name.string(), lock_file_open_result.error());
       return false;
     }
 
@@ -406,7 +406,7 @@ auto Runtimes::Cache::PruneStaleRuntimes(
     if (!lock_result.ok()) {
       // The normal case is when locking would block, log anything else.
       if (!lock_result.error().would_block()) {
-        CARBON_VLOG("Error locking cache entry '{0}': {1}", name,
+        CARBON_VLOG("Error locking cache entry '{0}': {1}", name.string(),
                     lock_result.error());
       }
       // However, don't try to remove it as we didn't acquire the lock.
@@ -451,7 +451,8 @@ auto Runtimes::Builder::Commit() && -> ErrorOr<std::filesystem::path> {
   CARBON_CHECK(dir_.path().parent_path() == runtimes_->base_path(),
                "Building a temporary directory '{0}' that is not in the "
                "runtimes tree '{1}'",
-               dir_.path(), runtimes_->base_path());
+               dir_.path().parent_path().string(),
+               runtimes_->base_path().string());
   auto rename_result = runtimes_->base_dir().Rename(
       dir_.path().filename(), runtimes_->base_dir(), dest_);
   // If the rename was successful, then we don't need to remove anything so
@@ -466,7 +467,7 @@ auto Runtimes::Builder::Commit() && -> ErrorOr<std::filesystem::path> {
     // TODO: Consider instead being more resilient to errors here and just log
     // them.
     CARBON_VLOG("PID {0} found racily built runtimes in cache path: {1}",
-                getpid(), dest_path);
+                getpid(), dest_path.string());
     CARBON_RETURN_IF_ERROR(std::move(dir_).Remove());
   } else {
     // An unexpected error occurred, propagate it and let the normal cleanup
@@ -494,7 +495,7 @@ auto Runtimes::Builder::ReleaseFileLock() -> void {
   if (flock_.is_locked()) {
     std::filesystem::path dest_path = runtimes_->base_path() / dest_;
     CARBON_VLOG("PID {0} releasing lock on cache path: {1}", getpid(),
-                dest_path);
+                dest_path.string());
     (void)lock_file_.WriteFileFromString("");
     flock_ = {};
     (void)std::move(lock_file_).Close();

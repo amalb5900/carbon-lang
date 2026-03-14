@@ -1684,7 +1684,8 @@ inline auto DirRef::Chdir() -> ErrorOr<Success, FdError> {
 
 inline auto DirRef::Chdir(const std::filesystem::path& path)
     -> ErrorOr<Success, PathError> {
-  if (path.is_absolute() || (path.native().size() >= 2 && path.native()[1] == L':')) {
+  if (path.is_absolute() ||
+      (path.native().size() >= 2 && path.native()[1] == L':')) {
     if (chdir(path.string().c_str()) == -1) {
       return PathError(errno, "Dir::Chdir on '{0}' relative to '{1}'", path,
                        dfd_);
