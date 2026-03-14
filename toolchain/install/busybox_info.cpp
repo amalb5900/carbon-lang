@@ -50,9 +50,6 @@ auto GetBusyboxInfo(const char* argv0) -> ErrorOr<BusyboxInfo> {
 #ifdef _WIN32
     _putenv_s(Argv0OverrideEnv, "");
 #else
-#ifdef _WIN32
-    _putenv_s(Argv0OverrideEnv, "");
-#else
     unsetenv(Argv0OverrideEnv);
 #endif
 #endif

@@ -20,9 +20,6 @@ static auto RealPathMatches(const char* found_path, llvm::StringRef exe_path)
 #ifdef _WIN32
   char* buffer = _fullpath(nullptr, found_path, 0);
 #else
-#ifdef _WIN32
-  char* buffer = _fullpath(nullptr, found_path, 0);
-#else
   char* buffer = realpath(found_path, nullptr);
 #endif
 #endif
