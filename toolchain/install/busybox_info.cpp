@@ -75,7 +75,7 @@ auto GetBusyboxInfo(const char* argv0) -> ErrorOr<BusyboxInfo> {
                                  "/prefix/lib/carbon/carbon-busybox";
       if (auto access = Filesystem::Cwd().Access(busybox_path);
           access.ok() && *access) {
-        // Normalize path separators for Windows
+#ifdef _WIN32
         std::string norm_path = busybox_path;
         for (auto& c : norm_path) {
           if (c == '/') {
@@ -83,6 +83,9 @@ auto GetBusyboxInfo(const char* argv0) -> ErrorOr<BusyboxInfo> {
           }
         }
         info.bin_path = norm_path;
+#else
+        info.bin_path = busybox_path;
+#endif
       }
       return info;
     }
@@ -117,7 +120,7 @@ auto GetBusyboxInfo(const char* argv0) -> ErrorOr<BusyboxInfo> {
       auto busybox_path = lib_path / "carbon-busybox";
       if (auto access = Filesystem::Cwd().Access(busybox_path);
           access.ok() && *access) {
-        // Normalize path separators for Windows
+#ifdef _WIN32
         std::string norm_path = busybox_path.string();
         for (auto& c : norm_path) {
           if (c == '/') {
@@ -125,6 +128,9 @@ auto GetBusyboxInfo(const char* argv0) -> ErrorOr<BusyboxInfo> {
           }
         }
         info.bin_path = norm_path;
+#else
+        info.bin_path = busybox_path;
+#endif
         return info;
       }
     }
