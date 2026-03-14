@@ -744,15 +744,7 @@ auto MakeTmpDirWithPrefix(std::filesystem::path prefix)
 #ifdef _WIN32
   std::string tmpdir_path_buffer = tmpdir_path.string();
 #else
-#ifdef _WIN32
-  std::string tmpdir_path_buffer = tmpdir_path.string();
-#else
-#ifdef _WIN32
-  std::string tmpdir_path_buffer = tmpdir_path.string();
-#else
   std::string tmpdir_path_buffer = tmpdir_path.native();
-#endif
-#endif
 #endif
 #ifdef _WIN32
   _mktemp_s(tmpdir_path_buffer.data(), tmpdir_path_buffer.size());
