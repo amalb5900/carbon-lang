@@ -53,7 +53,6 @@ struct CharLiteralValue {
 #pragma pack(push, 1)
 #endif
 class TokenInfo {
-
  public:
   // The kind for this token.
   auto kind() const -> TokenKind { return kind_; }
