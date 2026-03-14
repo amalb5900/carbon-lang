@@ -43,11 +43,7 @@ static auto Main(int argc, char** argv) -> ErrorOr<int> {
   exe_path = SetWorkingDirForBazelRun(exe_path);
 
 #ifdef _WIN32
-  // On Windows under bazel run, use runfiles to find the install root.
-  const auto install_paths =
-      getenv("BUILD_WORKING_DIRECTORY")
-          ? InstallPaths::MakeForBazelRunfiles(exe_path.string())
-          : InstallPaths::MakeExeRelative(exe_path.string());
+  const auto install_paths = InstallPaths::MakeExeRelative(exe_path.string());
 #else
   const auto install_paths = InstallPaths::MakeExeRelative(exe_path.native());
 #endif

@@ -1,3 +1,5 @@
+// Windows port fix v3
+// Windows port fix v2
 // Part of the Carbon Language project, under the Apache License v2.0 with LLVM
 // Exceptions. See /LICENSE for license information.
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
@@ -50,14 +52,14 @@ inline static int chdir(const wchar_t* path) { return ::_wchdir(path); }
 #ifdef _rmdir
 #undef _rmdir
 #endif
-inline static int _carbon_rmdir(const char* p) { return ::_rmdir(p); }
+static inline int _carbon_rmdir(const char* p) { return ::_rmdir(p); }
 inline static int _carbon_wrmdir(const wchar_t* p) { return ::_wrmdir(p); }
 inline static int _carbon_unlink(const char* p) { return ::_unlink(p); }
 inline static int _carbon_wunlink(const wchar_t* p) { return ::_wunlink(p); }
 #ifdef unlinkat
 #undef unlinkat
 #endif
-inline static int unlinkat(int, const char* path, int flags) {
+static inline int unlinkat(int, const char* path, int flags) {
   if (flags & 0x0200) {
     return _carbon_rmdir(path);
   }
@@ -74,7 +76,7 @@ inline static int unlinkat(int, const wchar_t* path, int flags) {
 #ifdef fchdir
 #undef fchdir
 #endif
-inline static int fchdir(int fd) {
+static inline int fchdir(int fd) {
   (void)fd;
   return -1;
 }
@@ -178,7 +180,7 @@ inline static bool _carbon_is_dir_fd(int fd) {
 #ifdef mkdirat
 #undef mkdirat
 #endif
-inline static int mkdirat(int dfd, const wchar_t* path, int) {
+static inline int mkdirat(int dfd, const wchar_t* path, int) {
   // Resolve path relative to dfd
   std::wstring norm(path);
   for (auto& c : norm) {
@@ -218,7 +220,7 @@ inline static int mkdirat(int dfd, const wchar_t* path, int) {
 #ifdef openat
 #undef openat
 #endif
-inline static std::wstring _carbon_resolve_path(int dfd, const wchar_t* path) {
+static inline std::wstring _carbon_resolve_path(int dfd, const wchar_t* path) {
   // Normalize forward slashes to backslashes
   std::wstring norm(path);
   for (auto& c : norm) {
@@ -226,21 +228,11 @@ inline static std::wstring _carbon_resolve_path(int dfd, const wchar_t* path) {
       c = L'\\';
     }
   }
-  // If absolute path, use as-is
+  // If absolute path or AT_FDCWD, use as-is
   bool is_abs = (norm.size() > 1 && norm[1] == L':') ||
                 (!norm.empty() && norm[0] == L'\\');
-  if (is_abs) {
+  if (dfd == -100 || is_abs) {
     return norm;
-  }
-  // AT_FDCWD with relative path - prepend CWD
-  if (dfd == -100) {
-    std::vector<wchar_t> cwd_vec(32768, L'\0');
-    GetCurrentDirectoryW(32768, cwd_vec.data());
-    std::wstring full_cwd(cwd_vec.data());
-    if (!full_cwd.empty() && full_cwd.back() != L'\\') {
-      full_cwd += L'\\';
-    }
-    return full_cwd + norm;
   }
   // Resolve relative to dfd
   HANDLE h = _carbon_is_dir_fd(dfd) ? _carbon_dir_get(dfd)
@@ -267,8 +259,8 @@ inline static std::wstring _carbon_resolve_path(int dfd, const wchar_t* path) {
   full += norm;
   return full;
 }
-inline static int _carbon_openat_impl(int dfd, const wchar_t* path, int flags,
-                                      int mode) {
+inline static int openat(int dfd, const wchar_t* path, int flags, int mode) {
+  { char p8[256] = {}; wcstombs(p8, path, 255); fprintf(stderr, "[openat] dfd=%d path=%s flags=0x%x\n", dfd, p8, flags); }
   std::wstring full = _carbon_resolve_path(dfd, path);
   if (flags & O_DIRECTORY) {
     // If O_CREAT is set, try to create the directory first using resolved full
@@ -286,49 +278,23 @@ inline static int _carbon_openat_impl(int dfd, const wchar_t* path, int flags,
         FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr,
         OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, nullptr);
     if (h == INVALID_HANDLE_VALUE) {
-      DWORD err = GetLastError();
-      fprintf(stderr, "[openat] CreateFileW FAILED err=%lu\n", err);
       errno = ENOENT;
       return -1;
     }
     int fd = _carbon_dir_add(h);
     return fd;
   }
-  // On Windows, if path is a directory, use CreateFileW even without
-  // O_DIRECTORY Strip trailing backslash for GetFileAttributesW
-  std::wstring full_notrail = full;
-  if (full_notrail.size() > 3 && full_notrail.back() == L'\\') {
-    full_notrail.pop_back();
-  }
-  DWORD attrs = GetFileAttributesW(full_notrail.c_str());
-  if (attrs != INVALID_FILE_ATTRIBUTES && (attrs & FILE_ATTRIBUTE_DIRECTORY)) {
-    HANDLE h = CreateFileW(
-        full.c_str(), GENERIC_READ,
-        FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr,
-        OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, nullptr);
-    if (h == INVALID_HANDLE_VALUE) {
-      errno = ENOENT;
-      return -1;
-    }
-    return _carbon_dir_add(h);
-  }
   return _wopen(full.c_str(), flags & ~O_DIRECTORY, mode);
 }
 inline static int openat(int dfd, const wchar_t* path, int flags) {
-  return _carbon_openat_impl(dfd, path, flags, 0);
+  return openat(dfd, path, flags, 0);
 }
-// Override LLVM unistd.h macro
-#ifdef openat
-#undef openat
-#endif
-#define openat(fd, path, flags, ...) \
-  _carbon_openat_impl(fd, (const wchar_t*)(path), flags, ##__VA_ARGS__)
 
 // readlinkat
 #ifdef readlinkat
 #undef readlinkat
 #endif
-inline static ssize_t readlinkat(int, const wchar_t* path, char* buf,
+static inline ssize_t readlinkat(int, const wchar_t* path, char* buf,
                                  size_t bufsiz) {
   HANDLE h = CreateFileW(
       path, 0, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr,
@@ -372,7 +338,7 @@ inline static ssize_t readlinkat(int, const wchar_t* path, char* buf,
 #ifdef symlinkat
 #undef symlinkat
 #endif
-inline static int symlinkat(const char* target, int, const char* path) {
+static inline int symlinkat(const char* target, int, const char* path) {
   DWORD flags = 0x2;
   DWORD attrs = GetFileAttributesA(target);
   if (attrs != INVALID_FILE_ATTRIBUTES && (attrs & FILE_ATTRIBUTE_DIRECTORY)) {
@@ -424,7 +390,7 @@ inline static char* mkdtemp(char* tmpl) {
 #ifdef faccessat
 #undef faccessat
 #endif
-inline static int faccessat(int dfd, const wchar_t* path, int mode, int) {
+static inline int faccessat(int dfd, const wchar_t* path, int mode, int) {
   // Normalize forward slashes to backslashes
   std::wstring norm(path);
   for (auto& c : norm) {
@@ -488,29 +454,13 @@ inline static int faccessat(int dfd, const wchar_t* path, int mode, int) {
 #ifdef fstat
 #undef fstat
 #endif
-inline static int fstat(int fd, struct _stat64* buf) {
-  if (_carbon_is_dir_fd(fd)) {
-    HANDLE h = _carbon_dir_get(fd);
-    if (h == INVALID_HANDLE_VALUE) {
-      errno = EBADF;
-      return -1;
-    }
-    BY_HANDLE_FILE_INFORMATION info = {};
-    if (!GetFileInformationByHandle(h, &info)) {
-      errno = EBADF;
-      return -1;
-    }
-    memset(buf, 0, sizeof(*buf));
-    buf->st_mode = _S_IFDIR | 0555;
-    buf->st_nlink = 1;
-    return 0;
-  }
+static inline int fstat(int fd, struct _stat64* buf) {
   return _fstat64(fd, buf);
 }
 #ifdef fstatat
 #undef fstatat
 #endif
-inline static int fstatat(int dfd, const wchar_t* path, struct _stat64* buf,
+static inline int fstatat(int dfd, const wchar_t* path, struct _stat64* buf,
                           int /*flags*/) {
   std::wstring full = _carbon_resolve_path(dfd, path);
   return _wstat64(full.c_str(), buf);
@@ -519,7 +469,7 @@ inline static int fstatat(int dfd, const wchar_t* path, struct _stat64* buf,
 #ifdef futimens
 #undef futimens
 #endif
-inline static int futimens(int, const struct timespec*) { return 0; }
+static inline int futimens(int, const struct timespec*) { return 0; }
 // unix_uid stub
 inline static int unix_uid() { return 0; }
 #endif  // _CARBON_STAT_WIN32_DEFINED
@@ -534,7 +484,7 @@ inline static int unix_uid() { return 0; }
 #ifdef pread
 #undef pread
 #endif
-inline static ssize_t pread(int fd, void* buf, size_t count, int64_t offset) {
+static inline ssize_t pread(int fd, void* buf, size_t count, int64_t offset) {
   int64_t old_pos = _lseeki64(fd, 0, SEEK_CUR);
   if (old_pos == -1) {
     return -1;
@@ -551,7 +501,7 @@ inline static ssize_t pread(int fd, void* buf, size_t count, int64_t offset) {
 #ifdef pwrite
 #undef pwrite
 #endif
-inline static ssize_t pwrite(int fd, const void* buf, size_t count,
+static inline ssize_t pwrite(int fd, const void* buf, size_t count,
                              int64_t offset) {
   int64_t old_pos = _lseeki64(fd, 0, SEEK_CUR);
   if (old_pos == -1) {
@@ -569,14 +519,14 @@ inline static ssize_t pwrite(int fd, const void* buf, size_t count,
 #ifdef ftruncate
 #undef ftruncate
 #endif
-inline static int ftruncate(int fd, int64_t length) {
+static inline int ftruncate(int fd, int64_t length) {
   return _chsize_s(fd, length);
 }
 
 // close - safe wrapper that handles directory HANDLE-based fds on Windows
 #define unlink _unlink
 
-inline static int _carbon_safe_close(int fd) {
+static inline int _carbon_safe_close(int fd) {
   if (_carbon_is_dir_fd(fd)) {
     (void)_carbon_dir_get(fd);
     _carbon_dir_remove(fd);
@@ -593,19 +543,19 @@ inline static int _carbon_safe_close(int fd) {
 #ifdef dup
 #undef dup
 #endif
-inline static int dup(int fd) { return _dup(fd); }
+static inline int dup(int fd) { return _dup(fd); }
 
 #ifdef dup2
 #undef dup2
 #endif
-inline static int dup2(int fd, int fd2) { return _dup2(fd, fd2); }
+static inline int dup2(int fd, int fd2) { return _dup2(fd, fd2); }
 
 // geteuid
 inline static uid_t geteuid() { return 0; }
 
 // flock
 #undef flock
-inline static int flock(int, int) { return 0; }
+static inline int flock(int, int) { return 0; }
 
 // clock_nanosleep
 inline static int clock_nanosleep(int, int, const struct timespec* ts,
@@ -645,7 +595,7 @@ struct _CarbonDIR {
 };
 #define DIR _CarbonDIR
 
-inline static DIR* opendir(const char* name) {
+static inline DIR* opendir(const char* name) {
   int wlen = MultiByteToWideChar(CP_UTF8, 0, name, -1, nullptr, 0);
   wchar_t* wname = new wchar_t[wlen + 4];
   MultiByteToWideChar(CP_UTF8, 0, name, -1, wname, wlen);
@@ -737,7 +687,7 @@ inline static int dirfd(_CarbonDIR* d) {
 #ifdef utimensat
 #undef utimensat
 #endif
-inline static int utimensat(int, const char*, const struct timespec*, int) {
+static inline int utimensat(int, const char*, const struct timespec*, int) {
   return 0;
 }
 inline static int utimensat(int, const wchar_t*, const struct timespec*, int) {
@@ -748,7 +698,7 @@ inline static int utimensat(int, const wchar_t*, const struct timespec*, int) {
 #ifdef renameat
 #undef renameat
 #endif
-inline static int renameat(int, const char* oldp, int, const char* newp) {
+static inline int renameat(int, const char* oldp, int, const char* newp) {
   return ::rename(oldp, newp);
 }
 inline static int renameat(int, const wchar_t* oldp, int, const wchar_t* newp) {
@@ -758,3 +708,6 @@ inline static int renameat(int, const wchar_t* oldp, int, const wchar_t* newp) {
 #endif  // _WIN32
 
 #endif  // CARBON_COMMON_FILESYSTEM_WIN32_H_
+
+
+

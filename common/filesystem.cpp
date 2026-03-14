@@ -198,8 +198,7 @@ static auto Sleep(Duration sleep) -> void {
   ts = Internal::DurationToTimespec(stop_time);
 
   do {
-    result =
-        clock_nanosleep(CLOCK_MONOTONIC, 1 /* TIMER_ABSTIME */, &ts, nullptr);
+    result = clock_nanosleep(CLOCK_MONOTONIC, 1 /* TIMER_ABSTIME */, &ts, nullptr);
 
     // Continue sleeping if we get interrupted by a resumable signal. Because
     // we're using a monotonic clock and an absolute deadline time we will
@@ -365,18 +364,15 @@ auto DirRef::OpenDir(const std::filesystem::path& path,
   // created the directory we require the last component to not be a symlink in
   // case it was _replaced_ with a symlink while running.
 #ifdef _WIN32
-#ifdef openat
-#undef openat
-#endif
-  int result_fd = _carbon_openat_impl(dfd_, path.wstring().c_str(),
-                                      static_cast<int>(open_flags), 0);
+  int result_fd =
+      openat(dfd_, path.wstring().c_str(), static_cast<int>(open_flags));
 #else
-  int result_fd = openat(dfd_, path.c_str(), static_cast<int>(open_flags));
+  int result_fd =
+      openat(dfd_, path.c_str(), static_cast<int>(open_flags));
 #endif
   if (result_fd == -1) {
     // No need for `EINTR` handling here as if this is a FIFO it would be an
     // error with `O_DIRECTORY`.
-
     return PathError(
         errno,
         "Calling `openat` on '{0}' relative to '{1}' during DirRef::OpenDir",
@@ -433,7 +429,7 @@ auto DirRef::OpenDir(const std::filesystem::path& path,
     }
   }
 
-  return std::move(result);
+  return result;
 }
 
 auto DirRef::ReadFileToString(const std::filesystem::path& path)
@@ -677,7 +673,7 @@ auto DirRef::ReadlinkSlow(const std::filesystem::path& path)
   }
   large_buffer.resize(status.size());
   ssize_t result =
-#ifdef _WIN32
+      #ifdef _WIN32
       0; /* readlinkat not available on Windows */
 #else
       readlinkat(dfd_, path.c_str(), large_buffer.data(), large_buffer.size());
@@ -748,14 +744,20 @@ auto MakeTmpDirWithPrefix(std::filesystem::path prefix)
 #ifdef _WIN32
   std::string tmpdir_path_buffer = tmpdir_path.string();
 #else
+#ifdef _WIN32
+  std::string tmpdir_path_buffer = tmpdir_path.string();
+#else
+#ifdef _WIN32
+  std::string tmpdir_path_buffer = tmpdir_path.string();
+#else
   std::string tmpdir_path_buffer = tmpdir_path.native();
+#endif
+#endif
 #endif
 #ifdef _WIN32
   _mktemp_s(tmpdir_path_buffer.data(), tmpdir_path_buffer.size());
   char* result = tmpdir_path_buffer.data();
-  if (mkdir(tmpdir_path_buffer.data()) != 0) {
-    result = nullptr;
-  }
+  if (mkdir(tmpdir_path_buffer.data()) != 0) result = nullptr;
 #else
   char* result = mkdtemp(tmpdir_path_buffer.data());
 #endif
@@ -784,8 +786,7 @@ auto MakeTmpDirWithPrefix(std::filesystem::path prefix)
   CARBON_ASSIGN_OR_RETURN(FileStatus stat, result_dir.Stat());
   // The permissions must be exactly 0700 for a temporary directory, and the UID
   // should be ours.
-  if (stat.permissions() != 0700 &&
-      stat.unix_uid() != 0 /* geteuid not available on Windows */) {
+  if (stat.permissions() != 0700 && stat.unix_uid() != 0 /* geteuid not available on Windows */) {
     return Error(
         llvm::formatv("Found incorrect permissions or UID on tmpdir '{0}'",
                       tmpdir_path.string())
@@ -796,3 +797,5 @@ auto MakeTmpDirWithPrefix(std::filesystem::path prefix)
 }
 
 }  // namespace Carbon::Filesystem
+
+

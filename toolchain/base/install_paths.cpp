@@ -31,7 +31,6 @@ auto InstallPaths::MakeExeRelative(llvm::StringRef exe_path) -> InstallPaths {
   InstallPaths paths;
 
   // Double check the exe was present.
-#ifndef _WIN32
   auto exe_access_result = Filesystem::Cwd().Access(exe_path.str());
   if (!exe_access_result.ok()) {
     paths.SetError(llvm::Twine("Failed to test for access executable: ") +
@@ -41,7 +40,6 @@ auto InstallPaths::MakeExeRelative(llvm::StringRef exe_path) -> InstallPaths {
     paths.SetError(llvm::Twine("Unable to access executable: ") + exe_path);
     return paths;
   }
-#endif
 
   return MakeFromFile(exe_path.str());
 }
@@ -149,27 +147,6 @@ auto InstallPaths::MakeFromFile(std::filesystem::path file_path)
   // the directory of this path.
   InstallPaths paths(std::move(file_path).remove_filename());
 
-#ifdef _WIN32
-  // On Windows, the bazel execroot path is a file not a directory.
-  // Walk up to find the real install root containing carbon_install.txt.
-  {
-    std::filesystem::path search = std::filesystem::absolute(paths.root_);
-    // Try up to 8 levels up to find carbon_install.txt
-    for (int i = 0; i < 8; ++i) {
-      std::error_code ec;
-      auto marker = search / "carbon_install.txt";
-      if (std::filesystem::exists(marker, ec)) {
-        paths.root_ = search;
-        break;
-      }
-      auto parent = search.parent_path();
-      if (parent == search) {
-        break;
-      }
-      search = parent;
-    }
-  }
-#endif
   auto open_result = Filesystem::Cwd().OpenDir(paths.root_);
   if (!open_result.ok()) {
     paths.SetError(open_result.error().ToString());
