@@ -408,29 +408,33 @@ auto DirRef::OpenDir(const std::filesystem::path& path,
     }
 
     // Check that the owning UID is the current effective UID.
-    if (stat_result->unix_uid() != 0 /* geteuid not available on Windows */) {
+    if (#ifdef _WIN32
+    stat_result->unix_uid() != 0
+#else
+    stat_result->unix_uid() != geteuid()
+#endif) {
       // Model this as `EPERM`, which is a bit awkward, but should be fine.
       return PathError(EPERM,
                        "Unexpected UID change after creating '{0}' relative to "
                        "'{1}' during DirRef::OpenDir",
                        path, dfd_);
-    }
-
-    // Check that the permissions are a subset of the requested ones. They may
-    // have been masked down by `umask`, but if there are *new* permissions,
-    // that would be a security issue.
-    if ((stat_result->permissions() & creation_mode) !=
-        stat_result->permissions()) {
-      // Model this with `EPERM` and a custom message.
-      return PathError(EPERM,
-                       "Unexpected permissions after creating '{0}' relative "
-                       "to '{1}' during DirRef::OpenDir",
-                       path, dfd_);
-    }
   }
 
-  return result;
+  // Check that the permissions are a subset of the requested ones. They may
+  // have been masked down by `umask`, but if there are *new* permissions,
+  // that would be a security issue.
+  if ((stat_result->permissions() & creation_mode) !=
+      stat_result->permissions()) {
+    // Model this with `EPERM` and a custom message.
+    return PathError(EPERM,
+                     "Unexpected permissions after creating '{0}' relative "
+                     "to '{1}' during DirRef::OpenDir",
+                     path, dfd_);
+  }
 }
+
+return result;
+}  // namespace Carbon::Filesystem
 
 auto DirRef::ReadFileToString(const std::filesystem::path& path)
     -> ErrorOr<std::string, PathError> {
@@ -781,14 +785,18 @@ auto MakeTmpDirWithPrefix(std::filesystem::path prefix)
   // The permissions must be exactly 0700 for a temporary directory, and the UID
   // should be ours.
   if (stat.permissions() != 0700 &&
-      stat.unix_uid() != 0 /* geteuid not available on Windows */) {
+#ifdef _WIN32
+      stat.unix_uid() != 0
+#else
+      stat.unix_uid() != geteuid()
+#endif) {
     return Error(
         llvm::formatv("Found incorrect permissions or UID on tmpdir '{0}'",
                       tmpdir_path.string())
             .str());
-  }
+}
 
-  return result_dir;
+return result_dir;
 }
 
 }  // namespace Carbon::Filesystem
