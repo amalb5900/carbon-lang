@@ -5,6 +5,9 @@
 #ifndef CARBON_TOOLCHAIN_SEM_IR_FACET_TYPE_INFO_H_
 #define CARBON_TOOLCHAIN_SEM_IR_FACET_TYPE_INFO_H_
 
+#include <optional>
+#include <variant>
+
 #include "common/enum_mask_base.h"
 #include "common/hashing.h"
 #include "llvm/ADT/StringExtras.h"

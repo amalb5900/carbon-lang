@@ -1,4 +1,4 @@
-// Part of the Carbon Language project, under the Apache License v2.0 with LLVM
+﻿// Part of the Carbon Language project, under the Apache License v2.0 with LLVM
 // Exceptions. See /LICENSE for license information.
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 
@@ -105,7 +105,7 @@ auto RunClangCC1(const InstallPaths& installation,
   if (clang_instance->getHeaderSearchOpts().UseBuiltinIncludes &&
       clang_instance->getHeaderSearchOpts().ResourceDir.empty()) {
     clang_instance->getHeaderSearchOpts().ResourceDir =
-        installation.clang_resource_path();
+        installation.clang_resource_path().string();
   }
 
   // Create the filesystem.

@@ -49,6 +49,9 @@ struct CharLiteralValue {
 // two separate vectors and their growth. Making this profitable would likely
 // at least require a highly specialized single vector that manages the growth
 // once and then provides separate storage areas for the two arrays.
+#ifdef _WIN32
+#pragma pack(push, 1)
+#endif
 class TokenInfo {
  public:
   // The kind for this token.
@@ -178,7 +181,11 @@ class TokenInfo {
   // so this value never overflows if lexing succeeds.
   TokenKind kind_;
   static_assert(sizeof(kind_) == 1, "TokenKind must pack to 8 bits");
+#ifdef _WIN32
+  unsigned has_leading_space_ : 1;
+#else
   bool has_leading_space_ : 1;
+#endif
   unsigned token_payload_ : PayloadBits;
 
   // Separate storage for the byte offset, this is hot while lexing but then
@@ -186,8 +193,13 @@ class TokenInfo {
   int32_t byte_offset_;
 };
 
+#ifdef _WIN32
+#pragma pack(pop)
+#endif
+#ifndef _WIN32
 static_assert(sizeof(TokenInfo) == 8,
               "Expected `TokenInfo` to pack to an 8-byte structure.");
+#endif
 
 }  // namespace Carbon::Lex
 
