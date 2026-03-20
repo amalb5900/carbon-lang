@@ -17,7 +17,11 @@ namespace Carbon {
 // Returns true if a found path resolves to the actual executable path.
 static auto RealPathMatches(const char* found_path, llvm::StringRef exe_path)
     -> bool {
+#ifdef _WIN32
+  char* buffer = _fullpath(nullptr, found_path, 0);
+#else
   char* buffer = realpath(found_path, nullptr);
+#endif
   if (!buffer) {
     return false;
   }
@@ -39,7 +43,8 @@ auto FindExecutablePath(const char* argv0) -> std::string {
 
   // If `argv[0]` is path-like and points at the executable, use the form in
   // `argv[0]`.
-  if (argv0_ref.contains('/') && RealPathMatches(argv0, exe_path)) {
+  if ((argv0_ref.contains('/') || argv0_ref.contains('\\')) &&
+      RealPathMatches(argv0, exe_path)) {
     return argv0_ref.str();
   }
 
